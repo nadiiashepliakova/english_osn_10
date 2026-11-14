@@ -1,6 +1,6 @@
-<h1>English</h1>
+<h1 align="center">English</h1>
 <br>
-<h2>Grade 10</h2>
+<h2 align="center">Grade 10</h2>
 
  
         
