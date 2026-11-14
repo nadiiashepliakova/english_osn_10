@@ -48,36 +48,33 @@
     }
 
     /* Кнопка на розділ «Людські взаємини» */
-    .section-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      background: #2f7d8c;
-      color: #ffffff;
-      font-size: 1.25rem;
-      font-weight: 600;
-      text-decoration: none;
-      padding: 1rem 2.2rem;
-      border-radius: 60px;
-      box-shadow: 0 10px 20px -8px rgba(47, 125, 140, 0.6);
-      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
-      border: 2px solid transparent;
-    }
+     .btn {
+            display: inline-block;
+            background: #ffffff;
+            color: #764ba2;
+            border: none;
+            padding: 20px 45px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            max-width: 90%;
+            text-align: center;
+            text-decoration: none;
+        }
 
-    .section-btn:hover {
-      background: #1f5f6b;
-      transform: translateY(-3px);
-      box-shadow: 0 16px 26px -10px rgba(31, 95, 107, 0.7);
-    }
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35);
+            background: #f0f0f0;
+        }
 
-    .section-btn:active {
-      transform: translateY(-1px);
-    }
-
-    .section-btn:focus-visible {
-      outline: 3px solid #b3d9e0;
-      outline-offset: 3px;
-    }
+        .btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+        }
 
     @media (max-width: 600px) {
       h1 {
@@ -96,7 +93,7 @@
     <span class="line">Grade 10</span>
     <span class="line">(основний рівень)</span>
   </h1>
-<a href="relationship.html" class="btn">Людські взаємини</a>
+<a class="btn" href="relationship.html" class="btn">Людські взаємини</a>
  
 </body>
 </html>
