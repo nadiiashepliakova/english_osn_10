@@ -1,4 +1,5 @@
-<h1 align="center">English</h1>
+<div>
+ <h1 align="center">English</h1>
 <br>
 <h2 align="center">Grade 10</h2>
 
