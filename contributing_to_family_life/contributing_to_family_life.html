@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contributing to Family Life - English Lesson</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --radius: 12px;
+            --success-bg: #dcfce7;
+            --success-border: #22c55e;
+            --success-text: #166534;
+            --error-bg: #fee2e2;
+            --error-border: #ef4444;
+            --error-text: #991b1b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: var(--card-bg);
+            padding: 24px;
+            border-radius: var(--radius);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            margin-bottom: 24px;
+        }
+
+        header h1 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+        }
+
+        .learning-outcomes {
+            background: #f1f5f9;
+            padding: 16px 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .learning-outcomes h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .learning-outcomes ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        .learning-outcomes li {
+            margin-bottom: 6px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Tabs styling */
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+        }
+
+        .tab-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 10px 18px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .tab-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Content panels */
+        .tab-content {
+            display: none;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            min-height: 250px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Warm-up specific layout */
+        .warmup-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .warmup-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .warmup-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            object-fit: cover;
+        }
+
+        .warmup-questions h3, .reading-section h3, .leadin-section h3, .reading2-section h3, .grammar-section h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+
+        .warmup-questions ol {
+            padding-left: 20px;
+        }
+
+        .warmup-questions li {
+            margin-bottom: 8px;
+            color: var(--text-muted);
+        }
+
+        /* Dropdown (Details) styling */
+        details {
+            margin-top: 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: #f8fafc;
+            overflow: hidden;
+        }
+
+        summary {
+            padding: 12px 16px;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--primary);
+            background: #f1f5f9;
+            user-select: none;
+        }
+
+        summary:hover {
+            background: #e2e8f0;
+        }
+
+        .blog-content, .exercise-content, .essay-content, .questions-content, .grammar-content {
+            padding: 20px;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            line-height: 1.7;
+            border-top: 1px solid var(--border-color);
+            background: white;
+        }
+
+        .blog-content h2, .essay-content h2 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .blog-content p, .essay-content p {
+            margin-bottom: 12px;
+        }
+
+        /* Interactive Exercise Styles */
+        .question-item {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .question-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .question-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .options-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .option-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            padding: 10px 14px;
+            margin-bottom: 6px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+        .option-btn.correct {
+            background-color: var(--success-bg) !important;
+            border-color: var(--success-border) !important;
+            color: var(--success-text) !important;
+            font-weight: 600;
+        }
+
+        .option-btn.incorrect {
+            background-color: var(--error-bg) !important;
+            border-color: var(--error-border) !important;
+            color: var(--error-text) !important;
+        }
+
+        .option-btn:disabled {
+            cursor: default;
+        }
+
+        .feedback-msg {
+            margin-top: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: none;
+        }
+
+        /* Advice Exercise Styles */
+        .advice-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+            gap: 15px;
+        }
+
+        .advice-item:last-child {
+            border-bottom: none;
+        }
+
+        .advice-text {
+            flex-grow: 1;
+            font-size: 0.95rem;
+        }
+
+        .advice-buttons {
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .advice-btn {
+            padding: 6px 12px;
+            font-weight: 600;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background: #f8fafc;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.85rem;
+        }
+
+        .advice-btn:hover:not(:disabled) {
+            background: #e2e8f0;
+            border-color: var(--primary);
+        }
+
+        .advice-btn.correct-choice {
+            background-color: var(--success-bg) !important;
+            border-color: var(--success-border) !important;
+            color: var(--success-text) !important;
+        }
+
+        .advice-btn.incorrect-choice {
+            background-color: var(--error-bg) !important;
+            border-color: var(--error-border) !important;
+            color: var(--error-text) !important;
+        }
+
+        /* Custom inputs for vocabulary & grammar */
+        .vocab-select, .vocab-input, .essay-select, .grammar-select {
+            padding: 6px 10px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            margin: 0 4px;
+            background: #f8fafc;
+        }
+
+        .vocab-input {
+            width: 180px;
+        }
+
+        .check-vocab-btn {
+            margin-top: 15px;
+            padding: 8px 16px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .check-vocab-btn:hover {
+            background: var(--primary-hover);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Шапка сторінки з Learning Outcomes -->
+        <header>
+            <h1>Contributing to Family Life</h1>
+            <div class="learning-outcomes">
+                <h3>Learning Outcomes:</h3>
+                <p style="margin-bottom: 6px; color: var(--text-muted); font-size: 0.95rem;">By the end of the lesson you will be able to:</p>
+                <ul>
+                    <li>explain how daily routine and household chores influence relationship between family members;</li>
+                    <li>think about rights and responsibilities in a family;</li>
+                    <li>find different ways of helping with family life;</li>
+                    <li>decide positive steps to take to contribute to family life.</li>
+                </ul>
+            </div>
+        </header>
+
+        <!-- Навігація по вкладинках -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="openTab(event, 'warmup')">Warming up</button>
+            <button class="tab-btn" onclick="openTab(event, 'reading')">Reading 1</button>
+            <button class="tab-btn" onclick="openTab(event, 'lead-in')">Lead-in to the topic</button>
+            <button class="tab-btn" onclick="openTab(event, 'reading2')">Reading 2</button>
+            <button class="tab-btn" onclick="openTab(event, 'grammar')">Grammar Practice</button>
+            <button class="tab-btn" onclick="openTab(event, 'homework')">Homework</button>
+        </div>
+
+        <!-- Вкладинка: Warm up -->
+        <div id="warmup" class="tab-content active">
+            <div class="warmup-container">
+                <div class="warmup-image">
+                    <img src="photo.jpg" alt="Two girls looking thoughtfully" onerror="this.src='https://via.placeholder.com/400x300?text=Photo+Placeholder'">
+                </div>
+                <div class="warmup-questions">
+                    <h3>Look at the photo and answer the questions:</h3>
+                    <ol>
+                        <li>Who can you see in the photo?</li>
+                        <li>What is the relationship between these people?</li>
+                        <li>How are they feeling? Why?</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- Вкладинка: Reading -->
+        <div id="reading" class="tab-content">
+            <div class="reading-section">
+                <h3>Read the blog quickly and check your ideas.</h3>
+                
+                <details>
+                    <summary>Show / Hide Blog Text (Ella's blog)</summary>
+                    <div class="blog-content">
+                        <h2>Ella's blog</h2>
+                        <p><strong>Hi everyone!</strong></p>
+                        <p>Generally speaking I'm enjoying life as a teenager, but there are times when it really gets me down. It's great that my parents are giving me a bit more independence. I have a really good group of friends and I see them two or three times a week. We go swimming every weekend, too. That's the good part. But one part of my life is definitely getting worse – and that's my relationship with my younger sister, Hanna. It is becoming an absolute nightmare. She's two years younger than me, but she wants to do exactly the same things as I do. That means she wants to have the same hairstyle as I have, she copies my clothes, she even wears the same make-up as me. And sometimes she makes me furious because she borrows my clothes without asking. I hate it. In fact, while I'm writing this blog I can see her from my room. She's in the back garden and she's wearing my white T-shirt and jeans, which are now really dirty because she's lying on her back in the grass. My parents know about this because I always tell them, but they don't understand. They think it's fine. They say my sister's younger than me so I need to be kind to her. But they're my clothes and it's my room. It's private!</p>
+                        <p>I also have an older brother, Jimmy, who is really great. He goes to a different school because he's older, but he always helps me with my homework if it's difficult. My laptop sometimes breaks and he repairs it for me. He loves playing computer games and he often lets me play, too. We get on very well. Hanna never goes into his room or takes his things. I know she doesn't want his clothes. But she doesn't even go in there to borrow a pen or some paper – or play a computer game while he's out. Why me???</p>
+                    </div>
+                </details>
+
+                <h3 style="margin-top: 24px;">Read the blog again and choose the best answers.</h3>
+
+                <details>
+                    <summary>Show / Hide Exercise: Choose the best answers (Interactive)</summary>
+                    <div class="exercise-content">
+                        <div class="question-item" data-question="1">
+                            <div class="question-title">1. Ella is quite happy at the moment because ...</div>
+                            <ul class="options-list">
+                                <li><button class="option-btn" data-correct="true" onclick="checkAnswer(this, 1)"><b>a</b> she's got more freedom than before.</button></li>
+                                <li><button class="option-btn" data-correct="false" onclick="checkAnswer(this, 1)"><b>b</b> she likes going out with her family.</button></li>
+                                <li><button class="option-btn" data-correct="false" onclick="checkAnswer(this, 1)"><b>c</b> she's getting on well with her school work.</button></li>
+                            </ul>
+                            <div class="feedback-msg"></div>
+                        </div>
+
+                        <div class="question-item" data-question="2">
+                            <div class="question-title">2. Ella's sister wants ...</div>
+                            <ul class="options-list">
+                                <li><button class="option-btn" data-correct="false" onclick="checkAnswer(this, 2)"><b>a</b> to use Ella's laptop all the time.</button></li>
+                                <li><button class="option-btn" data-correct="true" onclick="checkAnswer(this, 2)"><b>b</b> to look just like Ella.</button></li>
+                                <li><button class="option-btn" data-correct="false" onclick="checkAnswer(this, 2)"><b>c</b> to copy all Ella's work.</button></li>
+                            </ul>
+                            <div class="feedback-msg"></div>
+                        </div>
+
+                        <div class="question-item" data-question="3">
+                            <div class="question-title">3. Ella gets angry because ...</div>
+                            <ul class="options-list">
+                                <li><button class="option-btn" data-correct="true" onclick="checkAnswer(this, 3)"><b>a</b> her parents always agree with her sister.</button></li>
+                                <li><button class="option-btn" data-correct="false" onclick="checkAnswer(this, 3)"><b>b</b> she has to share a room with her sister.</button></li>
+                                <li><button class="option-btn" data-correct="false" onclick="checkAnswer(this, 3)"><b>c</b> her parents don't buy her new clothes.</button></li>
+                            </ul>
+                            <div class="feedback-msg"></div>
+                        </div>
+
+                        <div class="question-item" data-question="4">
+                            <div class="question-title">4. Ella's brother is ...</div>
+                            <ul class="options-list">
+                                <li><button class="option-btn" data-correct="false" onclick="checkAnswer(this, 4)"><b>a</b> unkind to her sister.</button></li>
+                                <li><button class="option-btn" data-correct="true" onclick="checkAnswer(this, 4)"><b>b</b> good with computers.</button></li>
+                                <li><button class="option-btn" data-correct="false" onclick="checkAnswer(this, 4)"><b>c</b> away at university a lot.</button></li>
+                            </ul>
+                            <div class="feedback-msg"></div>
+                        </div>
+
+                        <div class="question-item" data-question="5">
+                            <div class="question-title">5. Which would be the best title for the blog?</div>
+                            <ul class="options-list">
+                                <li><button class="option-btn" data-correct="false" onclick="checkAnswer(this, 5)"><b>a</b> My brother's amazing!</button></li>
+                                <li><button class="option-btn" data-correct="false" onclick="checkAnswer(this, 5)"><b>b</b> My parents don't understand me!</button></li>
+                                <li><button class="option-btn" data-correct="true" onclick="checkAnswer(this, 5)"><b>c</b> My sister's annoying!</button></li>
+                            </ul>
+                            <div class="feedback-msg"></div>
+                        </div>
+                    </div>
+                </details>
+
+                <h3 style="margin-top: 24px;">Think of good and bad pieces of advice for Ella. You can use the ideas from the list below.</h3>
+
+                <details>
+                    <summary>Show / Hide Exercise: Good or Bad advice</summary>
+                    <div class="exercise-content">
+                        <div class="advice-item" data-advice="bad">
+                            <div class="advice-text"><b>1.</b> Shout at your sister so she doesn’t do it again.</div>
+                            <div class="advice-buttons">
+                                <button class="advice-btn" onclick="checkAdvice(this, 'bad', 'good')">Good advice</button>
+                                <button class="advice-btn" onclick="checkAdvice(this, 'bad', 'bad')">Bad advice</button>
+                            </div>
+                        </div>
+                        <div class="advice-item" data-advice="bad">
+                            <div class="advice-text"><b>2.</b> Borrow some of her clothes and throw them away.</div>
+                            <div class="advice-buttons">
+                                <button class="advice-btn" onclick="checkAdvice(this, 'bad', 'good')">Good advice</button>
+                                <button class="advice-btn" onclick="checkAdvice(this, 'bad', 'bad')">Bad advice</button>
+                            </div>
+                        </div>
+                        <div class="advice-item" data-advice="bad">
+                            <div class="advice-text"><b>3.</b> Tell your parents every time she takes something.</div>
+                            <div class="advice-buttons">
+                                <button class="advice-btn" onclick="checkAdvice(this, 'bad', 'good')">Good advice</button>
+                                <button class="advice-btn" onclick="checkAdvice(this, 'bad', 'bad')">Bad advice</button>
+                            </div>
+                        </div>
+                        <div class="advice-item" data-advice="good">
+                            <div class="advice-text"><b>4.</b> Talk to her and say she can borrow some things, but not others.</div>
+                            <div class="advice-buttons">
+                                <button class="advice-btn" onclick="checkAdvice(this, 'good', 'good')">Good advice</button>
+                                <button class="advice-btn" onclick="checkAdvice(this, 'good', 'bad')">Bad advice</button>
+                            </div>
+                        </div>
+                        <div class="advice-item" data-advice="bad">
+                            <div class="advice-text"><b>5.</b> Put a lock on your door so no one can go in.</div>
+                            <div class="advice-buttons">
+                                <button class="advice-btn" onclick="checkAdvice(this, 'bad', 'good')">Good advice</button>
+                                <button class="advice-btn" onclick="checkAdvice(this, 'bad', 'bad')">Bad advice</button>
+                            </div>
+                        </div>
+                        <div class="advice-item" data-advice="good">
+                            <div class="advice-text"><b>6.</b> Give her some of your old clothes.</div>
+                            <div class="advice-buttons">
+                                <button class="advice-btn" onclick="checkAdvice(this, 'good', 'good')">Good advice</button>
+                                <button class="advice-btn" onclick="checkAdvice(this, 'good', 'bad')">Bad advice</button>
+                            </div>
+                        </div>
+                        <div class="advice-item" data-advice="good">
+                            <div class="advice-text"><b>7.</b> Offer her style advice.</div>
+                            <div class="advice-buttons">
+                                <button class="advice-btn" onclick="checkAdvice(this, 'good', 'good')">Good advice</button>
+                                <button class="advice-btn" onclick="checkAdvice(this, 'good', 'bad')">Bad advice</button>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+
+                <h3 style="margin-top: 24px;">Vocabulary Exercises</h3>
+
+                <details>
+                    <summary>Show / Hide Exercise: Match words with definitions (Select options)</summary>
+                    <div class="exercise-content">
+                        <p style="font-weight: 600; margin-bottom: 12px;">Match the underlined words in the blog with the definitions:</p>
+                        <ol style="padding-left: 20px; line-height: 2.5;" id="match-exercise">
+                            <li>
+                                makes me upset 
+                                <select class="vocab-select" data-answer="gets me down">
+                                    <option value="">-- choose --</option>
+                                    <option value="gets me down">gets me down</option>
+                                    <option value="furious">furious</option>
+                                    <option value="nightmare">nightmare</option>
+                                    <option value="borrows">borrows</option>
+                                    <option value="repairs">repairs</option>
+                                </select>
+                            </li>
+                            <li>
+                                very angry 
+                                <select class="vocab-select" data-answer="furious">
+                                    <option value="">-- choose --</option>
+                                    <option value="gets me down">gets me down</option>
+                                    <option value="furious">furious</option>
+                                    <option value="nightmare">nightmare</option>
+                                    <option value="borrows">borrows</option>
+                                    <option value="repairs">repairs</option>
+                                </select>
+                            </li>
+                            <li>
+                                a big problem 
+                                <select class="vocab-select" data-answer="nightmare">
+                                    <option value="">-- choose --</option>
+                                    <option value="gets me down">gets me down</option>
+                                    <option value="furious">furious</option>
+                                    <option value="nightmare">nightmare</option>
+                                    <option value="borrows">borrows</option>
+                                    <option value="repairs">repairs</option>
+                                </select>
+                            </li>
+                            <li>
+                                uses something that belongs to someone else, then gives it back later 
+                                <select class="vocab-select" data-answer="borrows">
+                                    <option value="">-- choose --</option>
+                                    <option value="gets me down">gets me down</option>
+                                    <option value="furious">furious</option>
+                                    <option value="nightmare">nightmare</option>
+                                    <option value="borrows">borrows</option>
+                                    <option value="repairs">repairs</option>
+                                </select>
+                            </li>
+                            <li>
+                                fixes something broken 
+                                <select class="vocab-select" data-answer="repairs">
+                                    <option value="">-- choose --</option>
+                                    <option value="gets me down">gets me down</option>
+                                    <option value="furious">furious</option>
+                                    <option value="nightmare">nightmare</option>
+                                    <option value="borrows">borrows</option>
+                                    <option value="repairs">repairs</option>
+                                </select>
+                            </li>
+                        </ol>
+                        <button class="check-vocab-btn" onclick="checkMatchingExercise()">Check Answers</button>
+                        <div id="matching-feedback" class="feedback-msg"></div>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Show / Hide Exercise: Complete the sentences (Type answers)</summary>
+                    <div class="exercise-content">
+                        <p style="font-weight: 600; margin-bottom: 12px;">Complete the sentences with the correct form of the words or phrases from 4:</p>
+                        <ol style="padding-left: 20px; line-height: 2.8;" id="complete-exercise">
+                            <li>
+                                If I get bad results in a test it <input type="text" class="vocab-input" data-answer="gets me down" placeholder="type answer...">.
+                            </li>
+                            <li>
+                                I've got to rewrite an essay for the teacher. It's an <input type="text" class="vocab-input" data-answer="nightmare" placeholder="type answer...">.
+                            </li>
+                            <li>
+                                My mum was <input type="text" class="vocab-input" data-answer="furious" placeholder="type answer..."> when Dad crashed her car.
+                            </li>
+                            <li>
+                                When I dropped my mobile phone on the floor, it was impossible to <input type="text" class="vocab-input" data-answer="repair" placeholder="type answer..."> it.
+                            </li>
+                            <li>
+                                I don't like to <input type="text" class="vocab-input" data-answer="borrow" placeholder="type answer..."> money from friends.
+                            </li>
+                        </ol>
+                        <button class="check-vocab-btn" onclick="checkCompletionExercise()">Check Answers</button>
+                        <div id="completion-feedback" class="feedback-msg"></div>
+                    </div>
+                </details>
+
+            </div>
+        </div>
+
+        <!-- Вкладинка: Lead-in to the topic -->
+        <div id="lead-in" class="tab-content">
+            <div class="leadin-section">
+                <h3>Answer these questions:</h3>
+                <ol type="I" style="padding-left: 20px; line-height: 1.8;">
+                    <li style="margin-bottom: 12px;">What daily routine activities influence the relationship between family members?</li>
+                    <li style="margin-bottom: 12px;">
+                        Who does these things in your family?
+                        <ol style="padding-left: 20px; margin-top: 8px; line-height: 1.6; list-style-type: decimal;">
+                            <li>Who prepares your school bag each morning?</li>
+                            <li>Who makes your dinner?</li>
+                            <li>Who buys the food you have for dinner?</li>
+                            <li>Who puts clean towels in the bathroom?</li>
+                            <li>Who cleans the table after you eat?</li>
+                            <li>Who empties the rubbish bin in your bedroom?</li>
+                            <li>Who provides the money if you need some to go out?</li>
+                        </ol>
+                    </li>
+                    <li>How often do you argue with your family members about these things? What do you usually say when you are asked to do some of these things?</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Вкладинка: Reading 2 -->
+        <div id="reading2" class="tab-content">
+            <div class="reading2-section">
+                <h3>Read the essay and choose the best title:</h3>
+                <div style="margin-bottom: 20px;">
+                    <select id="essay-title-select" class="essay-select">
+                        <option value="">-- choose the best title --</option>
+                        <option value="rights-and-responsibilities">Teenagers have rights AND responsibilities</option>
+                        <option value="power">Teenagers have the power</option>
+                        <option value="adult">Wait until you are an adult</option>
+                    </select>
+                    <button class="check-vocab-btn" onclick="checkEssayTitle()" style="margin-left: 10px;">Check Title</button>
+                    <div id="essay-title-feedback" class="feedback-msg"></div>
+                </div>
+
+                <details>
+                    <summary>Show / Hide Essay Text</summary>
+                    <div class="essay-content">
+                        <h2>Essay</h2>
+                        <p>We all have rights. Sometimes we feel angry if people don't respect our rights. Teenagers usually feel strongly that they have a right to say what they think. Or they have a right to choose what they do in their free time. Maybe they feel that they have a strong right to privacy.</p>
+                        <p>These rights are all important. They are part of becoming an independent adult. But, when we are changing from a child into an adult, it is easy to forget that there are two sides to this. We have rights, but we also have responsibilities at home. Can we demand our independence if other people do the shopping for us, make our meals, clean the bathroom and give us pocket money to go out?</p>
+                        <p>As we get older, we feel we have more rights. And we want others to respect our rights. But to become an independent adult we need to accept our own responsibilities and begin to do things for ourselves. After all, parents have rights, too.</p>
+                    </div>
+                </details>
+
+                <details style="margin-top: 16px;">
+                    <summary>Show / Hide Questions: Answer these questions</summary>
+                    <div class="questions-content">
+                        <h3 style="margin-bottom: 12px; color: var(--primary);">Answer these questions:</h3>
+                        <ol style="padding-left: 20px; line-height: 2;">
+                            <li>Do you agree with the examples of rights in the first paragraph? Why/Why not?</li>
+                            <li>What other rights do you think teenagers have at home? Make a list.</li>
+                            <li>Look at the question at the end of the second paragraph. What is your answer to this question? Explain.</li>
+                            <li>What rights and responsibilities do you think parents have?</li>
+                        </ol>
+                    </div>
+                </details>
+            </div>
+        </div>
+
+        <!-- Вкладинка: Grammar Practice -->
+        <div id="grammar" class="tab-content">
+            <div class="grammar-section">
+                <h3 style="margin-bottom: 16px; color: var(--primary);">Grammar Practice</h3>
+
+                <!-- Exercise 1 (6 завдань, закритий за замовчуванням) -->
+                <details>
+                    <summary>Exercise 1. Choose the correct variant</summary>
+                    <div class="grammar-content">
+                        <ol style="padding-left: 20px; line-height: 2.5;" id="grammar-ex1">
+                            <li style="margin-bottom: 15px;">
+                                Look! Ann <select class="grammar-select" data-answer="is cleaning">
+                                    <option value="">-- choose --</option>
+                                    <option value="cleans">cleans</option>
+                                    <option value="is cleaning">is cleaning</option>
+                                    <option value="cleaned">cleaned</option>
+                                    <option value="clean">clean</option>
+                                </select> the bathroom right now.
+                            </li>
+                            <li style="margin-bottom: 15px;">
+                                My sister usually <select class="grammar-select" data-answer="makes">
+                                    <option value="">-- choose --</option>
+                                    <option value="make">make</option>
+                                    <option value="makes">makes</option>
+                                    <option value="is making">is making</option>
+                                    <option value="made">made</option>
+                                </select> her bed every morning before school.
+                            </li>
+                            <li style="margin-bottom: 15px;">
+                                Dad <select class="grammar-select" data-answer="cooked">
+                                    <option value="">-- choose --</option>
+                                    <option value="cooks">cooks</option>
+                                    <option value="is cooking">is cooking</option>
+                                    <option value="cooked">cooked</option>
+                                    <option value="cook">cook</option>
+                                </select> a delicious dinner for us yesterday.
+                            </li>
+                            <li style="margin-bottom: 15px;">
+                                Be quiet! Tom <select class="grammar-select" data-answer="is doing">
+                                    <option value="">-- choose --</option>
+                                    <option value="does">does</option>
+                                    <option value="is doing">is doing</option>
+                                    <option value="did">did</option>
+                                    <option value="do">do</option>
+                                </select> the washing at the moment.
+                            </li>
+                            <li style="margin-bottom: 15px;">
+                                Who <select class="grammar-select" data-answer="takes">
+                                    <option value="">-- choose --</option>
+                                    <option value="takes">takes</option>
+                                    <option value="is taking">is taking</option>
+                                    <option value="took">took</option>
+                                    <option value="take">take</option>
+                                </select> the rubbish out every evening?
+                            </li>
+                            <li style="margin-bottom: 15px;">
+                                They <select class="grammar-select" data-answer="washed">
+                                    <option value="">-- choose --</option>
+                                    <option value="wash">wash</option>
+                                    <option value="are washing">are washing</option>
+                                    <option value="washed">washed</option>
+                                    <option value="washes">washes</option>
+                                </select> the dishes after lunch last Sunday.
+                            </li>
+                        </ol>
+                        <button class="check-vocab-btn" onclick="checkGrammarEx1()">Check Exercise 1</button>
+                        <div id="grammar-ex1-feedback" class="feedback-msg"></div>
+                    </div>
+                </details>
+
+                <!-- Exercise 2 (6 завдань, закритий за замовчуванням) -->
+                <details style="margin-top: 20px;">
+                    <summary>Exercise 2. Put the verbs in the correct form (Present Simple, Present Continuous, Past Simple)</summary>
+                    <div class="grammar-content">
+                        <ol style="padding-left: 20px; line-height: 2.8;" id="grammar-ex2">
+                            <li style="margin-bottom: 15px;">
+                                Right now, my mother <input type="text" class="vocab-input" data-answer="is doing the shopping" placeholder="e.g. is doing the shopping"> at the supermarket.
+                            </li>
+                            <li style="margin-bottom: 15px;">
+                                Yesterday, Tim <input type="text" class="vocab-input" data-answer="cleaned the kitchen" placeholder="e.g. cleaned the kitchen"> after family dinner.
+                            </li>
+                            <li style="margin-bottom: 15px;">
+                                We always <input type="text" class="vocab-input" data-answer="lay the table" placeholder="e.g. lay the table"> before we eat.
+                            </li>
+                            <li style="margin-bottom: 15px;">
+                                Listen! Someone <input type="text" class="vocab-input" data-answer="is washing the dishes" placeholder="e.g. is washing the dishes"> in the kitchen.
+                            </li>
+                            <li style="margin-bottom: 15px;">
+                                Last weekend, she <input type="text" class="vocab-input" data-answer="tidied her bedroom" placeholder="e.g. tidied her bedroom"> because it was very messy.
+                            </li>
+                            <li style="margin-bottom: 15px;">
+                                My brother usually <input type="text" class="vocab-input" data-answer="takes the rubbish out" placeholder="e.g. takes the rubbish out"> in the evening.
+                            </li>
+                        </ol>
+                        <button class="check-vocab-btn" onclick="checkGrammarEx2()">Check Exercise 2</button>
+                        <div id="grammar-ex2-feedback" class="feedback-msg"></div>
+                    </div>
+                </details>
+
+            </div>
+        </div>
+
+        <!-- Вкладинка: Homework -->
+        <div id="homework" class="tab-content">
+            <!-- Контент відсутній за запитом -->
+        </div>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(button => button.classList.remove('active'));
+
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+
+        function checkAnswer(button, qNum) {
+            const questionItem = button.closest('.question-item');
+            const buttons = questionItem.querySelectorAll('.option-btn');
+            const feedback = questionItem.querySelector('.feedback-msg');
+
+            buttons.forEach(btn => btn.disabled = true);
+
+            const isCorrect = button.getAttribute('data-correct') === 'true';
+
+            if (isCorrect) {
+                button.classList.add('correct');
+                feedback.textContent = "Correct! Great job.";
+                feedback.style.color = "var(--success-text)";
+            } else {
+                button.classList.add('incorrect');
+                feedback.textContent = "Incorrect. Try looking at the blog again.";
+                feedback.style.color = "var(--error-text)";
+                
+                buttons.forEach(btn => {
+                    if (btn.getAttribute('data-correct') === 'true') {
+                        btn.classList.add('correct');
+                    }
+                });
+            }
+            feedback.style.display = 'block';
+        }
+
+        function checkAdvice(button, correctType, chosenType) {
+            const adviceItem = button.closest('.advice-item');
+            const buttons = adviceItem.querySelectorAll('.advice-btn');
+
+            buttons.forEach(btn => btn.disabled = true);
+
+            if (chosenType === correctType) {
+                button.classList.add('correct-choice');
+            } else {
+                button.classList.add('incorrect-choice');
+                buttons.forEach(btn => {
+                    if (btn.getAttribute('onclick').includes(`'${correctType}'`)) {
+                        btn.classList.add('correct-choice');
+                    }
+                });
+            }
+        }
+
+        function checkMatchingExercise() {
+            const selects = document.querySelectorAll('#match-exercise .vocab-select');
+            let allCorrect = true;
+
+            selects.forEach(select => {
+                const userVal = select.value.trim().toLowerCase();
+                const correctVal = select.getAttribute('data-answer').trim().toLowerCase();
+
+                if (userVal === correctVal) {
+                    select.style.borderColor = "var(--success-border)";
+                    select.style.backgroundColor = "var(--success-bg)";
+                } else {
+                    select.style.borderColor = "var(--error-border)";
+                    select.style.backgroundColor = "var(--error-bg)";
+                    allCorrect = false;
+                }
+            });
+
+            const feedback = document.getElementById('matching-feedback');
+            feedback.style.display = 'block';
+            if (allCorrect) {
+                feedback.textContent = "All answers are correct! Great job.";
+                feedback.style.color = "var(--success-text)";
+            } else {
+                feedback.textContent = "Some answers are incorrect. Check highlighted fields.";
+                feedback.style.color = "var(--error-text)";
+            }
+        }
+
+        function checkCompletionExercise() {
+            const inputs = document.querySelectorAll('#complete-exercise .vocab-input');
+            let allCorrect = true;
+
+            inputs.forEach(input => {
+                const userVal = input.value.trim().toLowerCase();
+                const correctVal = input.getAttribute('data-answer').trim().toLowerCase();
+
+                if (userVal === correctVal) {
+                    input.style.borderColor = "var(--success-border)";
+                    input.style.backgroundColor = "var(--success-bg)";
+                } else {
+                    input.style.borderColor = "var(--error-border)";
+                    input.style.backgroundColor = "var(--error-bg)";
+                    allCorrect = false;
+                }
+            });
+
+            const feedback = document.getElementById('completion-feedback');
+            feedback.style.display = 'block';
+            if (allCorrect) {
+                feedback.textContent = "All sentences are correct! Excellent.";
+                feedback.style.color = "var(--success-text)";
+            } else {
+                feedback.textContent = "Some answers are incorrect or need the right form. Try again.";
+                feedback.style.color = "var(--error-text)";
+            }
+        }
+
+        function checkEssayTitle() {
+            const select = document.getElementById('essay-title-select');
+            const feedback = document.getElementById('essay-title-feedback');
+            feedback.style.display = 'block';
+
+            if (select.value === 'rights-and-responsibilities') {
+                select.style.borderColor = "var(--success-border)";
+                select.style.backgroundColor = "var(--success-bg)";
+                feedback.textContent = "Correct! Teenagers have rights AND responsibilities is the best title.";
+                feedback.style.color = "var(--success-text)";
+            } else if (select.value === "") {
+                feedback.textContent = "Please select a title first.";
+                feedback.style.color = "var(--error-text)";
+            } else {
+                select.style.borderColor = "var(--error-border)";
+                select.style.backgroundColor = "var(--error-bg)";
+                feedback.textContent = "Incorrect. Try re-reading the essay.";
+                feedback.style.color = "var(--error-text)";
+            }
+        }
+
+        function randomizeGrammarEx1() {
+            const selects = document.querySelectorAll('#grammar-ex1 .grammar-select');
+            selects.forEach(select => {
+                const optionsArray = Array.from(select.querySelectorAll('option'));
+                const defaultOption = optionsArray.find(opt => opt.value === "");
+                const choiceOptions = optionsArray.filter(opt => opt.value !== "");
+
+                for (let i = choiceOptions.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [choiceOptions[i], choiceOptions[j]] = [choiceOptions[j], choiceOptions[i]];
+                }
+
+                select.innerHTML = '';
+                if (defaultOption) select.appendChild(defaultOption);
+                choiceOptions.forEach(opt => select.appendChild(opt));
+            });
+        }
+
+        function checkGrammarEx1() {
+            const selects = document.querySelectorAll('#grammar-ex1 .grammar-select');
+            let allCorrect = true;
+
+            selects.forEach(select => {
+                const userVal = select.value.trim().toLowerCase();
+                const correctVal = select.getAttribute('data-answer').trim().toLowerCase();
+
+                if (userVal === correctVal) {
+                    select.style.borderColor = "var(--success-border)";
+                    select.style.backgroundColor = "var(--success-bg)";
+                } else {
+                    select.style.borderColor = "var(--error-border)";
+                    select.style.backgroundColor = "var(--error-bg)";
+                    allCorrect = false;
+                }
+            });
+
+            const feedback = document.getElementById('grammar-ex1-feedback');
+            feedback.style.display = 'block';
+            if (allCorrect) {
+                feedback.textContent = "All answers in Exercise 1 are correct! Excellent work.";
+                feedback.style.color = "var(--success-text)";
+            } else {
+                feedback.textContent = "Some answers are incorrect. Check highlighted options.";
+                feedback.style.color = "var(--error-text)";
+            }
+        }
+
+        function checkGrammarEx2() {
+            const inputs = document.querySelectorAll('#grammar-ex2 .vocab-input');
+            let allCorrect = true;
+
+            inputs.forEach(input => {
+                const userVal = input.value.trim().toLowerCase();
+                const correctVal = input.getAttribute('data-answer').trim().toLowerCase();
+
+                if (userVal === correctVal) {
+                    input.style.borderColor = "var(--success-border)";
+                    input.style.backgroundColor = "var(--success-bg)";
+                } else {
+                    input.style.borderColor = "var(--error-border)";
+                    input.style.backgroundColor = "var(--error-bg)";
+                    allCorrect = false;
+                }
+            });
+
+            const feedback = document.getElementById('grammar-ex2-feedback');
+            feedback.style.display = 'block';
+            if (allCorrect) {
+                feedback.textContent = "All answers in Exercise 2 are correct! Fantastic job.";
+                feedback.style.color = "var(--success-text)";
+            } else {
+                feedback.textContent = "Some answers are incorrect or use the wrong tense/form. Try again.";
+                feedback.style.color = "var(--error-text)";
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            randomizeGrammarEx1();
+        });
+    </script>
+</body>
+</html>
