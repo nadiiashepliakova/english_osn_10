@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contributing to Family Life - English Lesson</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #4f46e5;
             --primary-hover: #4338ca;
-            --bg-color: #f8fafc;
+            --secondary: #6366f1;
+            --bg-color: #0f172a;
+            --page-bg: #f8fafc;
             --card-bg: #ffffff;
             --text-main: #1e293b;
             --text-muted: #64748b;
             --border-color: #e2e8f0;
-            --radius: 12px;
+            --radius: 16px;
             --success-bg: #dcfce7;
             --success-border: #22c55e;
             --success-text: #166534;
@@ -26,46 +29,65 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
             color: var(--text-main);
             line-height: 1.6;
-            padding: 20px;
+            padding: 24px;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 960px;
             margin: 0 auto;
+            width: 100%;
         }
 
         header {
             background: var(--card-bg);
-            padding: 24px;
+            padding: 30px;
             border-radius: var(--radius);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
             margin-bottom: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
         }
 
         header h1 {
             color: var(--primary);
-            font-size: 1.8rem;
+            font-size: clamp(1.5rem, 4vw, 2.1rem);
             margin-bottom: 16px;
+            line-height: 1.25;
+            font-weight: 700;
         }
 
         .learning-outcomes {
-            background: #f1f5f9;
-            padding: 16px 20px;
-            border-radius: 8px;
-            border-left: 4px solid var(--primary);
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
         }
 
         .learning-outcomes h3 {
             font-size: 1.1rem;
             margin-bottom: 8px;
             color: var(--text-main);
+            font-weight: 600;
         }
 
         .learning-outcomes ul {
@@ -79,47 +101,72 @@
             font-size: 0.95rem;
         }
 
-        /* Tabs styling */
+        /* Tabs styling with glowing active states */
         .tabs {
             display: flex;
-            gap: 8px;
-            margin-bottom: 16px;
+            gap: 10px;
+            margin-bottom: 24px;
             overflow-x: auto;
-            padding-bottom: 4px;
+            padding-bottom: 8px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+        }
+
+        .tabs::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .tabs::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 6px;
         }
 
         .tab-btn {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            padding: 10px 18px;
+            padding: 12px 20px;
             font-size: 0.95rem;
             font-weight: 600;
             color: var(--text-muted);
             border-radius: var(--radius);
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
             white-space: nowrap;
+            flex-shrink: 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+            touch-action: manipulation;
         }
 
         .tab-btn:hover {
             border-color: var(--primary);
             color: var(--primary);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.1);
         }
 
         .tab-btn.active {
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
             color: white;
-            border-color: var(--primary);
+            border-color: transparent;
+            box-shadow: 0 6px 15px rgba(79, 70, 229, 0.3);
+            transform: translateY(-1px);
         }
 
         /* Content panels */
         .tab-content {
             display: none;
             background: var(--card-bg);
-            padding: 30px;
+            padding: 35px;
             border-radius: var(--radius);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
             min-height: 250px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .tab-content.active {
@@ -129,29 +176,103 @@
         /* Warm-up specific layout */
         .warmup-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 30px;
             align-items: center;
-        }
-
-        @media (max-width: 768px) {
-            .warmup-container {
-                grid-template-columns: 1fr;
-            }
         }
 
         .warmup-image img {
             width: 100%;
             height: auto;
-            border-radius: 8px;
+            border-radius: 12px;
             border: 1px solid var(--border-color);
             object-fit: cover;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
         }
 
-        .warmup-questions h3, .reading-section h3, .leadin-section h3, .reading2-section h3, .grammar-section h3 {
-            font-size: 1.1rem;
-            margin-bottom: 12px;
+        .warmup-questions h3, .reading-section h3, .leadin-section h3, .reading2-section h3, .grammar-section h3, .homework-section h3 {
+            font-size: 1.15rem;
+            margin-bottom: 14px;
             color: var(--text-main);
+            font-weight: 600;
+        }
+
+        /* Audio player styling */
+        .audio-player-box {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .audio-player-box audio {
+            width: 100%;
+            outline: none;
+            height: 44px;
+        }
+
+        .homework-matching-list {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .homework-match-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 14px 18px;
+            gap: 15px;
+            transition: all 0.2s;
+        }
+
+        .homework-match-item:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+        }
+
+        .homework-match-name {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-main);
+            min-width: 100px;
+        }
+
+        .homework-match-item .vocab-select {
+            flex: 1;
+            max-width: 360px;
+            margin: 0;
+        }
+
+        .homework-sentences-list {
+            margin-top: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .homework-sentence-item {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .homework-sentence-text {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            flex: 1;
         }
 
         .warmup-questions ol {
@@ -159,26 +280,33 @@
         }
 
         .warmup-questions li {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             color: var(--text-muted);
         }
 
         /* Dropdown (Details) styling */
         details {
-            margin-top: 16px;
+            margin-top: 20px;
             border: 1px solid var(--border-color);
-            border-radius: 8px;
+            border-radius: 12px;
             background: #f8fafc;
             overflow: hidden;
+            transition: all 0.2s;
+        }
+
+        details:hover {
+            border-color: #cbd5e1;
         }
 
         summary {
-            padding: 12px 16px;
+            padding: 16px 20px;
             font-weight: 600;
             cursor: pointer;
             color: var(--primary);
             background: #f1f5f9;
             user-select: none;
+            touch-action: manipulation;
+            transition: background 0.2s;
         }
 
         summary:hover {
@@ -186,10 +314,10 @@
         }
 
         .blog-content, .exercise-content, .essay-content, .questions-content, .grammar-content {
-            padding: 20px;
-            font-size: 0.95rem;
+            padding: 24px;
+            font-size: 0.98rem;
             color: var(--text-main);
-            line-height: 1.7;
+            line-height: 1.75;
             border-top: 1px solid var(--border-color);
             background: white;
         }
@@ -197,17 +325,17 @@
         .blog-content h2, .essay-content h2 {
             font-size: 1.4rem;
             color: var(--primary);
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
         .blog-content p, .essay-content p {
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
         /* Interactive Exercise Styles */
         .question-item {
-            margin-bottom: 20px;
-            padding-bottom: 15px;
+            margin-bottom: 24px;
+            padding-bottom: 20px;
             border-bottom: 1px solid var(--border-color);
         }
 
@@ -219,7 +347,7 @@
 
         .question-title {
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             color: var(--text-main);
         }
 
@@ -234,13 +362,20 @@
             text-align: left;
             background: #f8fafc;
             border: 1px solid var(--border-color);
-            padding: 10px 14px;
-            margin-bottom: 6px;
-            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 8px;
+            border-radius: 10px;
             cursor: pointer;
             transition: all 0.2s ease;
             font-size: 0.95rem;
             color: var(--text-main);
+            touch-action: manipulation;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            border-color: var(--primary);
+            background: #f1f5f9;
+            transform: translateX(2px);
         }
 
         .option-btn.correct {
@@ -261,8 +396,8 @@
         }
 
         .feedback-msg {
-            margin-top: 8px;
-            font-size: 0.85rem;
+            margin-top: 12px;
+            font-size: 0.9rem;
             font-weight: 600;
             display: none;
         }
@@ -272,9 +407,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 0;
+            padding: 16px 0;
             border-bottom: 1px solid var(--border-color);
-            gap: 15px;
+            gap: 20px;
         }
 
         .advice-item:last-child {
@@ -283,24 +418,25 @@
 
         .advice-text {
             flex-grow: 1;
-            font-size: 0.95rem;
+            font-size: 0.98rem;
         }
 
         .advice-buttons {
             display: flex;
-            gap: 8px;
+            gap: 10px;
             flex-shrink: 0;
         }
 
         .advice-btn {
-            padding: 6px 12px;
+            padding: 8px 16px;
             font-weight: 600;
-            border-radius: 6px;
+            border-radius: 8px;
             border: 1px solid var(--border-color);
             background: #f8fafc;
             cursor: pointer;
             transition: all 0.2s;
-            font-size: 0.85rem;
+            font-size: 0.88rem;
+            touch-action: manipulation;
         }
 
         .advice-btn:hover:not(:disabled) {
@@ -322,31 +458,167 @@
 
         /* Custom inputs for vocabulary & grammar */
         .vocab-select, .vocab-input, .essay-select, .grammar-select {
-            padding: 6px 10px;
-            border-radius: 6px;
+            padding: 10px 14px;
+            border-radius: 10px;
             border: 1px solid var(--border-color);
-            font-size: 0.9rem;
-            margin: 0 4px;
+            font-size: 0.95rem;
+            margin: 4px;
             background: #f8fafc;
+            max-width: 100%;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .vocab-select:focus, .vocab-input:focus, .essay-select:focus, .grammar-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
         }
 
         .vocab-input {
-            width: 180px;
+            width: 220px;
+        }
+
+        .essay-title-controls {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .essay-title-controls .essay-select {
+            margin: 0;
+            flex: 1 1 280px;
+        }
+
+        .essay-title-controls .check-vocab-btn {
+            margin-top: 0;
         }
 
         .check-vocab-btn {
-            margin-top: 15px;
-            padding: 8px 16px;
-            background: var(--primary);
+            margin-top: 20px;
+            padding: 12px 22px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
             color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 10px;
             cursor: pointer;
             font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+            touch-action: manipulation;
         }
 
         .check-vocab-btn:hover {
-            background: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(79, 70, 229, 0.35);
+        }
+
+        /* Lists inside exercises */
+        ol {
+            padding-left: 22px;
+        }
+
+        #match-exercise li,
+        #complete-exercise li,
+        #grammar-ex1 li,
+        #grammar-ex2 li {
+            margin-bottom: 16px;
+            line-height: 2;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            body {
+                padding: 12px;
+            }
+
+            header {
+                padding: 20px;
+                margin-bottom: 16px;
+            }
+
+            .tab-content {
+                padding: 20px;
+            }
+
+            .warmup-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .advice-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .advice-buttons {
+                width: 100%;
+            }
+
+            .advice-btn {
+                flex: 1;
+                text-align: center;
+                padding: 10px 14px;
+            }
+
+            .homework-match-item {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+            }
+
+            .homework-match-item .vocab-select {
+                max-width: 100%;
+                width: 100%;
+            }
+
+            .blog-content, .exercise-content, .essay-content, .questions-content, .grammar-content {
+                padding: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 8px;
+            }
+
+            header {
+                padding: 16px;
+                border-radius: 12px;
+            }
+
+            .tab-btn {
+                padding: 10px 16px;
+                font-size: 0.9rem;
+            }
+
+            .tab-content {
+                padding: 16px;
+                border-radius: 12px;
+            }
+
+            .vocab-input {
+                width: 100%;
+                margin: 6px 0;
+            }
+
+            .vocab-select, .grammar-select {
+                width: 100%;
+                margin: 6px 0;
+            }
+
+            .check-vocab-btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .essay-title-controls .essay-select {
+                width: 100%;
+                flex: 1 1 100%;
+            }
         }
     </style>
 </head>
@@ -355,7 +627,11 @@
     <div class="container">
         <!-- Шапка сторінки з Learning Outcomes -->
         <header>
-            <h1>Contributing to Family Life</h1>
+            <h1 align="center">Contributing to Family Life</h1>
+            <p align="justify"><font size="1"><b>References:</b></p>
+<ul><li>David Spencer. Gateway B1: Student’s book pack (2nd ed.). Macmillan Education.</li>
+<li>David Spencer, Lynda Edwards. Gateway B1: Workbook (2nd ed.). Macmillan Education.</li>
+</ul>
             <div class="learning-outcomes">
                 <h3>Learning Outcomes:</h3>
                 <p style="margin-bottom: 6px; color: var(--text-muted); font-size: 0.95rem;">By the end of the lesson you will be able to:</p>
@@ -364,25 +640,25 @@
                     <li>think about rights and responsibilities in a family;</li>
                     <li>find different ways of helping with family life;</li>
                     <li>decide positive steps to take to contribute to family life.</li>
-                </ul>
+                </ul></font>
             </div>
         </header>
 
         <!-- Навігація по вкладинках -->
-        <div class="tabs">
-            <button class="tab-btn active" onclick="openTab(event, 'warmup')">Warming up</button>
-            <button class="tab-btn" onclick="openTab(event, 'reading')">Reading 1</button>
-            <button class="tab-btn" onclick="openTab(event, 'lead-in')">Lead-in to the topic</button>
-            <button class="tab-btn" onclick="openTab(event, 'reading2')">Reading 2</button>
-            <button class="tab-btn" onclick="openTab(event, 'grammar')">Grammar Practice</button>
-            <button class="tab-btn" onclick="openTab(event, 'homework')">Homework</button>
+        <div class="tabs" role="tablist">
+            <button class="tab-btn active" onclick="openTab(event, 'warmup')">I.Warming-up</button>
+            <button class="tab-btn" onclick="openTab(event, 'reading')">II.Reading 1</button>
+            <button class="tab-btn" onclick="openTab(event, 'lead-in')">III.Lead-in to the topic</button>
+            <button class="tab-btn" onclick="openTab(event, 'reading2')">IV.Reading 2</button>
+            <button class="tab-btn" onclick="openTab(event, 'grammar')">V.Grammar Practice</button>
+            <button class="tab-btn" onclick="openTab(event, 'homework')">VI.Homework</button>
         </div>
 
         <!-- Вкладинка: Warm up -->
         <div id="warmup" class="tab-content active">
             <div class="warmup-container">
                 <div class="warmup-image">
-                    <img src="photo.jpg" alt="Two girls looking thoughtfully" onerror="this.src='https://via.placeholder.com/400x300?text=Photo+Placeholder'">
+                    <img src="Знімок екрана 2026-11-18 082934.png" alt="Two girls looking thoughtfully" onerror="this.onerror=null;this.src='https://placehold.co/400x300/e2e8f0/64748b?text=Family+Photo';">
                 </div>
                 <div class="warmup-questions">
                     <h3>Look at the photo and answer the questions:</h3>
@@ -398,10 +674,10 @@
         <!-- Вкладинка: Reading -->
         <div id="reading" class="tab-content">
             <div class="reading-section">
-                <h3>Read the blog quickly and check your ideas.</h3>
+                <h3>Task 1. Read the blog quickly and check your ideas.</h3>
                 
                 <details>
-                    <summary>Show / Hide Blog Text (Ella's blog)</summary>
+                    <summary>Show / Hide Blog</summary>
                     <div class="blog-content">
                         <h2>Ella's blog</h2>
                         <p><strong>Hi everyone!</strong></p>
@@ -410,11 +686,12 @@
                     </div>
                 </details>
 
-                <h3 style="margin-top: 24px;">Read the blog again and choose the best answers.</h3>
+                <h3 style="margin-top: 24px;">Task 2. Read the blog again and choose the best answers.</h3>
 
                 <details>
-                    <summary>Show / Hide Exercise: Choose the best answers (Interactive)</summary>
+                    <summary>Show / Hide Exercise</summary>
                     <div class="exercise-content">
+                    
                         <div class="question-item" data-question="1">
                             <div class="question-title">1. Ella is quite happy at the moment because ...</div>
                             <ul class="options-list">
@@ -467,10 +744,10 @@
                     </div>
                 </details>
 
-                <h3 style="margin-top: 24px;">Think of good and bad pieces of advice for Ella. You can use the ideas from the list below.</h3>
+                <h3 style="margin-top: 24px;">Task 3. Think of good and bad pieces of advice for Ella. You can use the ideas from the list below.</h3>
 
                 <details>
-                    <summary>Show / Hide Exercise: Good or Bad advice</summary>
+                    <summary>Show / Hide Exercise</summary>
                     <div class="exercise-content">
                         <div class="advice-item" data-advice="bad">
                             <div class="advice-text"><b>1.</b> Shout at your sister so she doesn’t do it again.</div>
@@ -524,13 +801,13 @@
                     </div>
                 </details>
 
-                <h3 style="margin-top: 24px;">Vocabulary Exercises</h3>
+                <h3 style="margin-top: 24px;">Task 4. Vocabulary Exercises</h3>
 
                 <details>
-                    <summary>Show / Hide Exercise: Match words with definitions (Select options)</summary>
+                    <summary>Show / Hide Exercise 1</summary>
                     <div class="exercise-content">
-                        <p style="font-weight: 600; margin-bottom: 12px;">Match the underlined words in the blog with the definitions:</p>
-                        <ol style="padding-left: 20px; line-height: 2.5;" id="match-exercise">
+                        <p style="font-weight: 600; margin-bottom: 12px;">Match the given words from the blog with the definitions:</p>
+                        <ol id="match-exercise">
                             <li>
                                 makes me upset 
                                 <select class="vocab-select" data-answer="gets me down">
@@ -593,15 +870,15 @@
                 </details>
 
                 <details>
-                    <summary>Show / Hide Exercise: Complete the sentences (Type answers)</summary>
+                    <summary>Show / Hide Exercise 2</summary>
                     <div class="exercise-content">
-                        <p style="font-weight: 600; margin-bottom: 12px;">Complete the sentences with the correct form of the words or phrases from 4:</p>
-                        <ol style="padding-left: 20px; line-height: 2.8;" id="complete-exercise">
+                        <p style="font-weight: 600; margin-bottom: 12px;">Complete the sentences with the correct form of the words or phrases from Exercise 1:</p>
+                        <ol id="complete-exercise">
                             <li>
                                 If I get bad results in a test it <input type="text" class="vocab-input" data-answer="gets me down" placeholder="type answer...">.
                             </li>
                             <li>
-                                I've got to rewrite an essay for the teacher. It's an <input type="text" class="vocab-input" data-answer="nightmare" placeholder="type answer...">.
+                                I've got to rewrite an essay for the teacher. It's a/an <input type="text" class="vocab-input" data-answer="nightmare" placeholder="type answer...">.
                             </li>
                             <li>
                                 My mum was <input type="text" class="vocab-input" data-answer="furious" placeholder="type answer..."> when Dad crashed her car.
@@ -625,11 +902,11 @@
         <div id="lead-in" class="tab-content">
             <div class="leadin-section">
                 <h3>Answer these questions:</h3>
-                <ol type="I" style="padding-left: 20px; line-height: 1.8;">
+                <ol type="I" style="line-height: 1.8;">
                     <li style="margin-bottom: 12px;">What daily routine activities influence the relationship between family members?</li>
                     <li style="margin-bottom: 12px;">
                         Who does these things in your family?
-                        <ol style="padding-left: 20px; margin-top: 8px; line-height: 1.6; list-style-type: decimal;">
+                        <ol style="margin-top: 8px; line-height: 1.7; list-style-type: decimal;">
                             <li>Who prepares your school bag each morning?</li>
                             <li>Who makes your dinner?</li>
                             <li>Who buys the food you have for dinner?</li>
@@ -648,19 +925,19 @@
         <div id="reading2" class="tab-content">
             <div class="reading2-section">
                 <h3>Read the essay and choose the best title:</h3>
-                <div style="margin-bottom: 20px;">
+                <div class="essay-title-controls">
                     <select id="essay-title-select" class="essay-select">
                         <option value="">-- choose the best title --</option>
                         <option value="rights-and-responsibilities">Teenagers have rights AND responsibilities</option>
                         <option value="power">Teenagers have the power</option>
                         <option value="adult">Wait until you are an adult</option>
                     </select>
-                    <button class="check-vocab-btn" onclick="checkEssayTitle()" style="margin-left: 10px;">Check Title</button>
-                    <div id="essay-title-feedback" class="feedback-msg"></div>
+                    <button class="check-vocab-btn" onclick="checkEssayTitle()">Check Title</button>
                 </div>
+                <div id="essay-title-feedback" class="feedback-msg" style="margin-bottom: 16px;"></div>
 
                 <details>
-                    <summary>Show / Hide Essay Text</summary>
+                    <summary>Show / Hide  Text</summary>
                     <div class="essay-content">
                         <h2>Essay</h2>
                         <p>We all have rights. Sometimes we feel angry if people don't respect our rights. Teenagers usually feel strongly that they have a right to say what they think. Or they have a right to choose what they do in their free time. Maybe they feel that they have a strong right to privacy.</p>
@@ -670,10 +947,10 @@
                 </details>
 
                 <details style="margin-top: 16px;">
-                    <summary>Show / Hide Questions: Answer these questions</summary>
+                    <summary>Show / Hide Questions</summary>
                     <div class="questions-content">
                         <h3 style="margin-bottom: 12px; color: var(--primary);">Answer these questions:</h3>
-                        <ol style="padding-left: 20px; line-height: 2;">
+                        <ol style="line-height: 2;">
                             <li>Do you agree with the examples of rights in the first paragraph? Why/Why not?</li>
                             <li>What other rights do you think teenagers have at home? Make a list.</li>
                             <li>Look at the question at the end of the second paragraph. What is your answer to this question? Explain.</li>
@@ -693,8 +970,8 @@
                 <details>
                     <summary>Exercise 1. Choose the correct variant</summary>
                     <div class="grammar-content">
-                        <ol style="padding-left: 20px; line-height: 2.5;" id="grammar-ex1">
-                            <li style="margin-bottom: 15px;">
+                        <ol id="grammar-ex1">
+                            <li>
                                 Look! Ann <select class="grammar-select" data-answer="is cleaning">
                                     <option value="">-- choose --</option>
                                     <option value="cleans">cleans</option>
@@ -703,7 +980,7 @@
                                     <option value="clean">clean</option>
                                 </select> the bathroom right now.
                             </li>
-                            <li style="margin-bottom: 15px;">
+                            <li>
                                 My sister usually <select class="grammar-select" data-answer="makes">
                                     <option value="">-- choose --</option>
                                     <option value="make">make</option>
@@ -712,7 +989,7 @@
                                     <option value="made">made</option>
                                 </select> her bed every morning before school.
                             </li>
-                            <li style="margin-bottom: 15px;">
+                            <li>
                                 Dad <select class="grammar-select" data-answer="cooked">
                                     <option value="">-- choose --</option>
                                     <option value="cooks">cooks</option>
@@ -721,7 +998,7 @@
                                     <option value="cook">cook</option>
                                 </select> a delicious dinner for us yesterday.
                             </li>
-                            <li style="margin-bottom: 15px;">
+                            <li>
                                 Be quiet! Tom <select class="grammar-select" data-answer="is doing">
                                     <option value="">-- choose --</option>
                                     <option value="does">does</option>
@@ -730,7 +1007,7 @@
                                     <option value="do">do</option>
                                 </select> the washing at the moment.
                             </li>
-                            <li style="margin-bottom: 15px;">
+                            <li>
                                 Who <select class="grammar-select" data-answer="takes">
                                     <option value="">-- choose --</option>
                                     <option value="takes">takes</option>
@@ -739,7 +1016,7 @@
                                     <option value="take">take</option>
                                 </select> the rubbish out every evening?
                             </li>
-                            <li style="margin-bottom: 15px;">
+                            <li>
                                 They <select class="grammar-select" data-answer="washed">
                                     <option value="">-- choose --</option>
                                     <option value="wash">wash</option>
@@ -758,23 +1035,23 @@
                 <details style="margin-top: 20px;">
                     <summary>Exercise 2. Put the verbs in the correct form (Present Simple, Present Continuous, Past Simple)</summary>
                     <div class="grammar-content">
-                        <ol style="padding-left: 20px; line-height: 2.8;" id="grammar-ex2">
-                            <li style="margin-bottom: 15px;">
+                        <ol id="grammar-ex2">
+                            <li>
                                 Right now, my mother <input type="text" class="vocab-input" data-answer="is doing the shopping" placeholder="e.g. is doing the shopping"> at the supermarket.
                             </li>
-                            <li style="margin-bottom: 15px;">
+                            <li>
                                 Yesterday, Tim <input type="text" class="vocab-input" data-answer="cleaned the kitchen" placeholder="e.g. cleaned the kitchen"> after family dinner.
                             </li>
-                            <li style="margin-bottom: 15px;">
+                            <li>
                                 We always <input type="text" class="vocab-input" data-answer="lay the table" placeholder="e.g. lay the table"> before we eat.
                             </li>
-                            <li style="margin-bottom: 15px;">
+                            <li>
                                 Listen! Someone <input type="text" class="vocab-input" data-answer="is washing the dishes" placeholder="e.g. is washing the dishes"> in the kitchen.
                             </li>
-                            <li style="margin-bottom: 15px;">
+                            <li>
                                 Last weekend, she <input type="text" class="vocab-input" data-answer="tidied her bedroom" placeholder="e.g. tidied her bedroom"> because it was very messy.
                             </li>
-                            <li style="margin-bottom: 15px;">
+                            <li>
                                 My brother usually <input type="text" class="vocab-input" data-answer="takes the rubbish out" placeholder="e.g. takes the rubbish out"> in the evening.
                             </li>
                         </ol>
@@ -788,7 +1065,152 @@
 
         <!-- Вкладинка: Homework -->
         <div id="homework" class="tab-content">
-            <!-- Контент відсутній за запитом -->
+            <div class="homework-section">
+                <h3 style="margin-bottom: 16px; color: var(--primary);">Homework<br><ol type="I"><li>Listening Exercises</li></ol>
+<div class="audio-player-box" style="margin-top: 0; margin-bottom: 20px;">
+                            <audio controls preload="metadata">
+                                <source src="03.mp3" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+
+                <!-- Exercise 1 -->
+                <details>
+                    <summary>Exercise 1. Listen and choose the correct variant for each person</summary>
+                    <div class="grammar-content">
+                        
+                        <div class="homework-matching-list" id="homework-matching">
+                            <div class="homework-match-item">
+                                <span class="homework-match-name">1. Grace</span>
+                                <select class="vocab-select" data-answer="looks after a sibling">
+                                    <option value="">-- choose responsibility --</option>
+                                    <option value="looks after a sibling">looks after a sibling</option>
+                                    <option value="takes a pet for a walk">takes a pet for a walk</option>
+                                    <option value="visits a grandparent">visits a grandparent</option>
+                                    <option value="cooks Sunday dinner">cooks Sunday dinner</option>
+                                    <option value="looks after a grand parent">looks after a grand parent</option>
+                                    <option value="goes for a walk with a sibling">goes for a walk with a sibling</option>
+                                </select>
+                            </div>
+
+                            <div class="homework-match-item">
+                                <span class="homework-match-name">2. Louis</span>
+                                <select class="vocab-select" data-answer="takes a pet for a walk">
+                                    <option value="">-- choose responsibility --</option>
+                                    <option value="looks after a sibling">looks after a sibling</option>
+                                    <option value="takes a pet for a walk">takes a pet for a walk</option>
+                                    <option value="visits a grandparent">visits a grandparent</option>
+                                    <option value="cooks Sunday dinner">cooks Sunday dinner</option>
+                                    <option value="looks after a grand parent">looks after a grand parent</option>
+                                    <option value="goes for a walk with a sibling">goes for a walk with a sibling</option>
+                                </select>
+                            </div>
+
+                            <div class="homework-match-item">
+                                <span class="homework-match-name">3. Jessica</span>
+                                <select class="vocab-select" data-answer="visits a grandparent">
+                                    <option value="">-- choose responsibility --</option>
+                                    <option value="looks after a sibling">looks after a sibling</option>
+                                    <option value="takes a pet for a walk">takes a pet for a walk</option>
+                                    <option value="visits a grandparent">visits a grandparent</option>
+                                    <option value="cooks Sunday dinner">cooks Sunday dinner</option>
+                                    <option value="looks after a grand parent">looks after a grand parent</option>
+                                    <option value="goes for a walk with a sibling">goes for a walk with a sibling</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button class="check-vocab-btn" onclick="checkHomeworkMatching()">Check Answers</button>
+                        <div id="homework-feedback" class="feedback-msg"></div>
+                    </div>
+                </details>
+
+                <!-- Exercise 2 -->
+                <details style="margin-top: 20px;">
+                    <summary>Exercise 2. Listen again and choose the name of the person who says these things</summary>
+                    <div class="grammar-content">
+                        <div class="homework-matching-list" id="homework-saying">
+                            <div class="homework-match-item">
+                                <span style="flex: 1; font-size: 0.95rem;"><b>1.</b> I’m an only child.</span>
+                                <select class="vocab-select" data-answer="louis" style="max-width: 200px;">
+                                    <option value="">-- choose --</option>
+                                    <option value="grace">Grace</option>
+                                    <option value="louis">Louis</option>
+                                    <option value="jessica">Jessica</option>
+                                </select>
+                            </div>
+
+                            <div class="homework-match-item">
+                                <span style="flex: 1; font-size: 0.95rem;"><b>2.</b> I chose to take on my responsibility.</span>
+                                <select class="vocab-select" data-answer="louis" style="max-width: 200px;">
+                                    <option value="">-- choose --</option>
+                                    <option value="grace">Grace</option>
+                                    <option value="louis">Louis</option>
+                                    <option value="jessica">Jessica</option>
+                                </select>
+                            </div>
+
+                            <div class="homework-match-item">
+                                <span style="flex: 1; font-size: 0.95rem;"><b>3.</b> I have a new opinion about my mum.</span>
+                                <select class="vocab-select" data-answer="grace" style="max-width: 200px;">
+                                    <option value="">-- choose --</option>
+                                    <option value="grace">Grace</option>
+                                    <option value="louis">Louis</option>
+                                    <option value="jessica">Jessica</option>
+                                </select>
+                            </div>
+
+                            <div class="homework-match-item">
+                                <span style="flex: 1; font-size: 0.95rem;"><b>4.</b> I can do more in my free time because of my responsibility.</span>
+                                <select class="vocab-select" data-answer="louis" style="max-width: 200px;">
+                                    <option value="">-- choose --</option>
+                                    <option value="grace">Grace</option>
+                                    <option value="louis">Louis</option>
+                                    <option value="jessica">Jessica</option>
+                                </select>
+                            </div>
+
+                            <div class="homework-match-item">
+                                <span style="flex: 1; font-size: 0.95rem;"><b>5.</b> I can now have something I want.</span>
+                                <select class="vocab-select" data-answer="louis" style="max-width: 200px;">
+                                    <option value="">-- choose --</option>
+                                    <option value="grace">Grace</option>
+                                    <option value="louis">Louis</option>
+                                    <option value="jessica">Jessica</option>
+                                </select>
+                            </div>
+
+                            <div class="homework-match-item">
+                                <span style="flex: 1; font-size: 0.95rem;"><b>6.</b> I have to help because my mum is busy studying.</span>
+                                <select class="vocab-select" data-answer="jessica" style="max-width: 200px;">
+                                    <option value="">-- choose --</option>
+                                    <option value="grace">Grace</option>
+                                    <option value="louis">Louis</option>
+                                    <option value="jessica">Jessica</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button class="check-vocab-btn" onclick="checkHomeworkSaying()">Check Answers</button>
+                        <div id="homework-saying-feedback" class="feedback-msg"></div>
+                    </div>
+                </details>
+<ol type="I" start="2"><li>Speaking</li></ol>
+                <!-- Exercise 3: Talking Points -->
+                <details style="margin-top: 20px;">
+                    <summary>Talking Points. Prepare to speak about rights and responsibilities in your family</summary>
+                    <div class="grammar-content">
+                        <p style="font-weight: 600; margin-bottom: 12px; color: var(--text-main);">Prepare a short talk or notes covering the following points:</p>
+                        <ul style="padding-left: 20px; line-height: 2; color: var(--text-muted);">
+                            <li>What are your main responsibilities at home?</li>
+                            <li>Do you think you have enough freedom and rights compared to your responsibilities?</li>
+                            <li>How do your parents help you, and how do you help them in return?</li>
+                            <li>What would you like to change in your daily household routine?</li>
+                        </ul>
+                    </div>
+                </details>
+
+            </div>
         </div>
     </div>
 
@@ -802,6 +1224,7 @@
 
             document.getElementById(tabName).classList.add('active');
             evt.currentTarget.classList.add('active');
+            evt.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
         }
 
         function checkAnswer(button, qNum) {
@@ -1000,6 +1423,64 @@
                 feedback.style.color = "var(--success-text)";
             } else {
                 feedback.textContent = "Some answers are incorrect or use the wrong tense/form. Try again.";
+                feedback.style.color = "var(--error-text)";
+            }
+        }
+
+        function checkHomeworkMatching() {
+            const selects = document.querySelectorAll('#homework-matching .vocab-select');
+            let allCorrect = true;
+
+            selects.forEach(select => {
+                const userVal = select.value.trim().toLowerCase();
+                const correctVal = select.getAttribute('data-answer').trim().toLowerCase();
+
+                if (userVal === correctVal) {
+                    select.style.borderColor = "var(--success-border)";
+                    select.style.backgroundColor = "var(--success-bg)";
+                } else {
+                    select.style.borderColor = "var(--error-border)";
+                    select.style.backgroundColor = "var(--error-bg)";
+                    allCorrect = false;
+                }
+            });
+
+            const feedback = document.getElementById('homework-feedback');
+            feedback.style.display = 'block';
+            if (allCorrect) {
+                feedback.textContent = "All answers are correct! Well done.";
+                feedback.style.color = "var(--success-text)";
+            } else {
+                feedback.textContent = "Some answers are incorrect. Listen again and check highlighted fields.";
+                feedback.style.color = "var(--error-text)";
+            }
+        }
+
+        function checkHomeworkSaying() {
+            const selects = document.querySelectorAll('#homework-saying .vocab-select');
+            let allCorrect = true;
+
+            selects.forEach(select => {
+                const userVal = select.value.trim().toLowerCase();
+                const correctVal = select.getAttribute('data-answer').trim().toLowerCase();
+
+                if (userVal === correctVal) {
+                    select.style.borderColor = "var(--success-border)";
+                    select.style.backgroundColor = "var(--success-bg)";
+                } else {
+                    select.style.borderColor = "var(--error-border)";
+                    select.style.backgroundColor = "var(--error-bg)";
+                    allCorrect = false;
+                }
+            });
+
+            const feedback = document.getElementById('homework-saying-feedback');
+            feedback.style.display = 'block';
+            if (allCorrect) {
+                feedback.textContent = "All answers are correct! Excellent work.";
+                feedback.style.color = "var(--success-text)";
+            } else {
+                feedback.textContent = "Some answers are incorrect. Review the audio and try again.";
                 feedback.style.color = "var(--error-text)";
             }
         }
