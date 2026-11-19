@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Changing Gender Roles (Household Chores) - English Lesson</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #855842;
+            --primary-hover: #6f4735;
+            --secondary: #a47551;
+            --bg-color: #fcf8f5;
+            --page-bg: #f4ece4;
+            --card-bg: #ffffff;
+            --text-main: #3d2c22;
+            --text-muted: #796153;
+            --border-color: #e3d3c8;
+            --radius: 16px;
+            --success-bg: #eaf4ed;
+            --success-border: #4e9f3d;
+            --success-text: #274e13;
+            --error-bg: #fde8e8;
+            --error-border: #d32f2f;
+            --error-text: #991b1b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--page-bg) 0%, #ebdccf 100%);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 24px;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        header {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: 0 10px 25px -5px rgba(61, 44, 34, 0.08), 0 8px 10px -6px rgba(61, 44, 34, 0.04);
+            margin-bottom: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+
+        header h1 {
+            color: var(--primary);
+            font-size: clamp(1.5rem, 4vw, 2.1rem);
+            margin-bottom: 20px;
+            line-height: 1.25;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .learning-outcomes {
+            background: linear-gradient(135deg, #fcf8f5 0%, #f4ece4 100%);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .learning-outcomes h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .learning-outcomes ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        .learning-outcomes li {
+            margin-bottom: 6px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 24px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+        }
+
+        .tabs::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .tabs::-webkit-scrollbar-thumb {
+            background: #d5c2b4;
+            border-radius: 6px;
+        }
+
+        .tab-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 12px 20px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            white-space: nowrap;
+            flex-shrink: 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+            touch-action: manipulation;
+        }
+
+        .tab-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(133, 88, 66, 0.1);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 6px 15px rgba(133, 88, 66, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .tab-content {
+            display: none;
+            background: var(--card-bg);
+            padding: 35px;
+            border-radius: var(--radius);
+            box-shadow: 0 10px 25px -5px rgba(61, 44, 34, 0.08), 0 8px 10px -6px rgba(61, 44, 34, 0.04);
+            min-height: 250px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .stage-title {
+            font-size: 1.15rem;
+            margin-bottom: 16px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .vocab-exercise-list {
+            list-style: decimal;
+            padding-left: 20px;
+            margin-top: 15px;
+        }
+
+        .vocab-exercise-list li {
+            margin-bottom: 16px;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-main);
+        }
+
+        .vocab-select, .vocab-input {
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            font-size: 0.95rem;
+            background: #fcf8f5;
+            color: var(--text-main);
+            transition: all 0.2s;
+            margin: 0 4px;
+        }
+
+        .vocab-select:focus, .vocab-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(133, 88, 66, 0.15);
+        }
+
+        .vocab-input {
+            width: 150px;
+            text-align: center;
+        }
+
+        .translation-input {
+            width: 100%;
+            max-width: 580px;
+            text-align: left;
+            margin-top: 6px;
+            display: block;
+        }
+
+        .hint-text {
+            font-size: 0.85rem;
+            color: var(--success-text);
+            margin-top: 4px;
+            display: none;
+            font-weight: 500;
+        }
+
+        .heading-slot {
+            margin-top: 18px;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .heading-slot select {
+            font-weight: 600;
+            min-width: 260px;
+        }
+
+        .feedback-msg {
+            margin-top: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: none;
+        }
+
+        details {
+            margin-top: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: #fcf8f5;
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+
+        summary {
+            padding: 16px 20px;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--primary);
+            background: #f4ece4;
+            user-select: none;
+            transition: background 0.2s;
+        }
+
+        summary:hover {
+            background: #ebdccf;
+        }
+
+        .panel-body {
+            padding: 24px;
+            font-size: 0.98rem;
+            color: var(--text-main);
+            line-height: 1.75;
+            border-top: 1px solid var(--border-color);
+            background: white;
+        }
+
+        .check-btn {
+            margin-top: 20px;
+            padding: 12px 22px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(133, 88, 66, 0.25);
+        }
+
+        .check-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(133, 88, 66, 0.35);
+        }
+
+        .speaking-box {
+            margin-top: 24px;
+            background: linear-gradient(135deg, #fcf8f5 0%, #f7efe8 100%);
+            border: 1px solid var(--border-color);
+            border-left: 5px solid var(--primary);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .speaking-box h3 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        ol {
+            padding-left: 22px;
+        }
+
+        ol li {
+            margin-bottom: 14px;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 12px; }
+            header { padding: 20px; }
+            .tab-content { padding: 20px; }
+            .heading-slot select { width: 100%; min-width: unset; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Шапка сторінки -->
+        <header>
+            <h1>Growing up with chores</h1>
+            
+            <div class="learning-outcomes">
+                <h3>Learning Outcomes:</h3>
+                <p style="margin-bottom: 6px; color: var(--text-muted); font-size: 0.95rem;">By the end of the lesson you will be able to:</p>
+                <ul>
+                    <li>understand and analyze the infomation from the article;</li>
+                    <li>accurately apply Present Simple, Present Continuous, Past Simple, and Present Perfect tenses to describe daily habits, ongoing domestic tasks, and completed actions in a household context;</li>
+                    <li>confidently use vocabulary related to household chores while expressing their personal opinions on fairness of family responsibilities.</li>
+                    
+                </ul>
+            </div>
+        </header>
+
+        <!-- Навігація по вкладинках (Етапи уроку) -->
+        <div class="tabs" role="tablist">
+            <button class="tab-btn active" onclick="openTab(event, 'warmer')">I. Warmer</button>
+            <button class="tab-btn" onclick="openTab(event, 'leadin')">II. Lead-in to the topic</button>
+            <button class="tab-btn" onclick="openTab(event, 'vocab')">III. Vocabulary</button>
+            <button class="tab-btn" onclick="openTab(event, 'reading')">IV. Reading</button>
+            <button class="tab-btn" onclick="openTab(event, 'grammar')">V. Grammar Practice</button>
+            <button class="tab-btn" onclick="openTab(event, 'homework')">VI. Homework</button>
+        </div>
+
+        <!-- Вкладинка: Warmer -->
+        <div id="warmer" class="tab-content active">
+            <div class="stage-title">Warmer</div>
+            <p style="margin-bottom: 16px; color: var(--text-muted);">Answer the questions:</p>
+            <ol style="color: var(--text-main); line-height: 1.8;">
+                <li>What rights can teenagers have?</li>
+                <li>Can we demand the respect for rights if we don't fulfill responsibilities?</li>
+                <li>What are your main responsibilities at home?</li>
+                <li>Do you think you have enough freedom and rights compared to your responsibilities?</li>
+                <li>How do your parents help you, and how do you help them in return?</li>
+                <li>What would you like to change in your daily household routine? Why?</li>
+                <li>Can parents and children have the same rights and responsibilities? What rights and responsibilities can be the same?</li>
+            </ol>
+        </div>
+
+        <!-- Вкладинка: Lead-in to the topic -->
+        <div id="leadin" class="tab-content">
+            
+            <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 30px; align-items: center;">
+                <div>
+                  <p style="font-weight: 600; font-size: 1.05rem; margin-bottom: 14px; color: var(--text-main);">Look at the picture. Who should do these chores: parents or children?</p>
+                    
+                    <img src="photo.jpg" alt="Household chores illustration" style="width: 100%; border-radius: 12px; border: 1px solid var(--border-color);" onerror="this.onerror=null;this.src='https://placehold.co/400x300/e3d3c8/855842?text=Household+Chores';">
+                </div>
+                <div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Етап 3: Vocabulary -->
+        <div id="vocab" class="tab-content">
+            <div class="stage-title">Vocabulary Builder: Household Chores</div>
+            <p style="margin-bottom: 16px; color: var(--text-muted);">Practice the vocabulary related to household chores.</p>
+
+            <details>
+                <summary>Exercise 1: Complete the collocations with verbs</summary>
+                <div class="panel-body">
+                    <ol class="vocab-exercise-list" id="vocab-exercise-container-1">
+                        <li data-answer="fold">
+                            <select class="vocab-select" data-correct="fold"><option value="">-- choose --</option></select> clothes / sheets / paper
+                        </li>
+                        <li data-answer="sweep">
+                            <select class="vocab-select" data-correct="sweep"><option value="">-- choose --</option></select> the floor / the garden path / the streets
+                        </li>
+                        <li data-answer="sort">
+                            <select class="vocab-select" data-correct="sort"><option value="">-- choose --</option></select> the rubbish / the recycling / your books
+                        </li>
+                        <li data-answer="clear up">
+                            <select class="vocab-select" data-correct="clear up"><option value="">-- choose --</option></select> a room / a mess / a problem
+                        </li>
+                        <li data-answer="wipe">
+                            <select class="vocab-select" data-correct="wipe"><option value="">-- choose --</option></select> the table / the chairs / the kitchen surfaces
+                        </li>
+                        <li data-answer="put away">
+                            <select class="vocab-select" data-correct="put away"><option value="">-- choose --</option></select> your clothes / the dinner things / the children's toys
+                        </li>
+                        <li data-answer="water">
+                            <select class="vocab-select" data-correct="water"><option value="">-- choose --</option></select> plants / the garden / the flowers
+                        </li>
+                        <li data-answer="load">
+                            <select class="vocab-select" data-correct="load"><option value="">-- choose --</option></select> the dishwasher / the washing machine / the car
+                        </li>
+                        <li data-answer="fix/mend">
+                            <select class="vocab-select" data-correct="fix/mend"><option value="">-- choose --</option></select> or <select class="vocab-select" data-correct="fix/mend"><option value="">-- choose --</option></select> the TV / your bike / a computer
+                        </li>
+                    </ol>
+
+                    <button class="check-btn" onclick="checkVocabulary1()">Check Exercise 1</button>
+                    <div id="vocab-feedback-1" class="feedback-msg"></div>
+                </div>
+            </details>
+
+            <details style="margin-top: 16px;">
+                <summary>Exercise 2: Choose the correct answers</summary>
+                <div class="panel-body">
+                    <ol class="vocab-exercise-list" id="vocab-exercise-container-2">
+                        <li>
+                            I haven't 
+                            <select class="vocab-select" data-correct="watered">
+                                <option value="">-- choose --</option>
+                                <option value="watered">watered</option>
+                                <option value="sorted">sorted</option>
+                            </select> 
+                            the plants for weeks.
+                        </li>
+                        <li>
+                            Will you 
+                            <select class="vocab-select" data-correct="sweep">
+                                <option value="">-- choose --</option>
+                                <option value="sweep">sweep</option>
+                                <option value="fold">fold</option>
+                            </select> 
+                            your clothes and put them away / clear them up before you go to bed, please?
+                        </li>
+                        <li>
+                            Will you sweep / fold your clothes and 
+                            <select class="vocab-select" data-correct="put them away">
+                                <option value="">-- choose --</option>
+                                <option value="put them away">put them away</option>
+                                <option value="clear them up">clear them up</option>
+                            </select> 
+                            before you go to bed, please?
+                        </li>
+                        <li>
+                            Before we can watch TV, we have to 
+                            <select class="vocab-select" data-correct="wipe">
+                                <option value="">-- choose --</option>
+                                <option value="wipe">wipe</option>
+                                <option value="sweep">sweep</option>
+                            </select> 
+                            the table and put away / load the dishwasher.
+                        </li>
+                        <li>
+                            Before we can watch TV, we have to wipe / sweep the table and 
+                            <select class="vocab-select" data-correct="load the dishwasher">
+                                <option value="">-- choose --</option>
+                                <option value="load the dishwasher">load the dishwasher</option>
+                                <option value="put away">put away</option>
+                            </select>.
+                        </li>
+                        <li>
+                            I hope you 
+                            <select class="vocab-select" data-correct="clear up">
+                                <option value="">-- choose --</option>
+                                <option value="clear up">clear up</option>
+                                <option value="sort">sort</option>
+                            </select> 
+                            this mess you're making after you've finished loading / mending your skateboard.
+                        </li>
+                        <li>
+                            I hope you clear up / sort this mess you're making after you've finished 
+                            <select class="vocab-select" data-correct="mending">
+                                <option value="">-- choose --</option>
+                                <option value="loading">loading</option>
+                                <option value="mending">mending</option>
+                            </select> 
+                            your skateboard.
+                        </li>
+                        <li>
+                            The floor is dirty – you'd better 
+                            <select class="vocab-select" data-correct="sweep">
+                                <option value="">-- choose --</option>
+                                <option value="water">water</option>
+                                <option value="sweep">sweep</option>
+                            </select> it.
+                        </li>
+                        <li>
+                            I've done the washing – can you 
+                            <select class="vocab-select" data-correct="load">
+                                <option value="">-- choose --</option>
+                                <option value="sort">sort</option>
+                                <option value="load">load</option>
+                            </select> 
+                            it into separate piles of your clothes and your sister's clothes?
+                        </li>
+                        <li>
+                            Don't 
+                            <select class="vocab-select" data-correct="load">
+                                <option value="">-- choose --</option>
+                                <option value="load">load</option>
+                                <option value="wipe">wipe</option>
+                            </select> 
+                            the dishwasher this morning because the repair man is coming to load / fix it.
+                        </li>
+                        <li>
+                            Don't load / wipe the dishwasher this morning because the repair man is coming to 
+                            <select class="vocab-select" data-correct="fix">
+                                <option value="">-- choose --</option>
+                                <option value="load">load</option>
+                                <option value="fix">fix</option>
+                            </select> it.
+                        </li>
+                        <li>
+                            All these plates and dishes are clean. Let's 
+                            <select class="vocab-select" data-correct="put them away">
+                                <option value="">-- choose --</option>
+                                <option value="clear them up">clear them up</option>
+                                <option value="put them away">put them away</option>
+                            </select>.
+                        </li>
+                        <li>
+                            Someone has put all of the rubbish in the same bin. Now I have to go through the bin and 
+                            <select class="vocab-select" data-correct="sort it">
+                                <option value="">-- choose --</option>
+                                <option value="clear it up">clear it up</option>
+                                <option value="sort it">sort it</option>
+                            </select> 
+                            into recycling and ordinary rubbish.
+                        </li>
+                        <li>
+                            Meral, can you 
+                            <select class="vocab-select" data-correct="sweep">
+                                <option value="">-- choose --</option>
+                                <option value="sweep">sweep</option>
+                                <option value="wipe">wipe</option>
+                            </select> 
+                            the path outside the front door before your grandparents come? The trees have dropped leaves all over it.
+                        </li>
+                    </ol>
+
+                    <button class="check-btn" onclick="checkVocabulary2()">Check Exercise 2</button>
+                    <div id="vocab-feedback-2" class="feedback-msg"></div>
+                </div>
+            </details>
+
+            <details style="margin-top: 16px;">
+                <summary>Exercise 3: Complete the text with the correct form of the verbs</summary>
+                <div class="panel-body">
+                    <p style="margin-bottom: 16px; color: var(--text-muted);">
+                        Verbs: fix, fold, load, put away, sort, sweep, wash up, water
+                    </p>
+                    <p style="line-height: 2.2; font-size: 1.05rem;" id="vocab-exercise-container-3">
+                        We are going away for the weekend, so I hope you will keep the house tidy. Make sure you 
+                        <input type="text" class="vocab-input" data-correct="wash up" placeholder="type verb..."> 
+                        after every meal and 
+                        <input type="text" class="vocab-input" data-correct="put away" placeholder="type verb..."> 
+                        the dishes in the cupboard. If you have friends over, then 
+                        <input type="text" class="vocab-input" data-correct="load" placeholder="type verb..."> 
+                        the dishwasher and put it on. Please can you 
+                        <input type="text" class="vocab-input" data-correct="fold" placeholder="type verb..."> 
+                        the clean clothes carefully, 
+                        <input type="text" class="vocab-input" data-correct="sort" placeholder="type verb..."> 
+                        them into piles and put them away in the right place? It’s going to be hot, so don’t forget to 
+                        <input type="text" class="vocab-input" data-correct="water" placeholder="type verb..."> 
+                        the plants every morning ... and can you 
+                        <input type="text" class="vocab-input" data-correct="sweep" placeholder="type verb..."> 
+                        up the leaves in the drive? If you have time, can you 
+                        <input type="text" class="vocab-input" data-correct="fix" placeholder="type verb..."> 
+                        the light in the garage? I don’t know why it’s not working.
+                    </p>
+
+                    <button class="check-btn" onclick="checkVocabulary3()">Check Exercise 3</button>
+                    <div id="vocab-feedback-3" class="feedback-msg"></div>
+                </div>
+            </details>
+
+            <div style="margin-top: 24px; background: #fcf8f5; border-left: 4px solid var(--primary); padding: 18px 20px; border-radius: 0 12px 12px 0; border: 1px solid var(--border-color); border-left-width: 4px;">
+                <p style="font-weight: 600; font-size: 1.05rem; color: var(--text-main);">
+                    How would you react if your parents left you such a message?
+                </p>
+                <p style="margin-top: 6px; font-size: 0.95rem; color: var(--text-muted);">
+                    Discuss your thoughts and feelings with your partner.
+                </p>
+            </div>
+        </div>
+
+        <!-- Етап 4: Reading -->
+        <div id="reading" class="tab-content">
+            <div class="stage-title">Reading & Comprehension: Chores: It's a Family Affair</div>
+            
+            <details open>
+                <summary>📖 Reading Block 1: Match the headings to paragraphs 1–5</summary>
+                <div class="panel-body" style="line-height: 1.8;" id="reading-ex2">
+                    <p><em>'Could you load the dishwasher?' 'Would you fold and put away your clothes?' How many times have we <strong>begged</strong> our teenage children to do a chore and found later that it was <strong>handled</strong> so poorly we have to finish the job? Few parents are happy with the way housework is done by their teenagers. Kate Kelly, author of The Complete Idiot's Guide to Parenting a Teenager, has some solutions.</em></p>
+                    
+                    <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--border-color);">
+                    <p style="margin-bottom: 12px; color: var(--text-muted); font-size: 0.95rem;">
+                        <strong>Choose the correct heading before each paragraph:</strong>
+                    </p>
+
+                    <div class="heading-slot">
+                        <span>1.</span>
+                        <select class="vocab-select" data-correct="b">
+                            <option value="">-- select heading --</option>
+                            <option value="a">a. Chores can be a welcome distraction</option>
+                            <option value="b">b. Explain the job</option>
+                            <option value="c">c. One task at a time</option>
+                            <option value="d">d. Tips to get chores done</option>
+                            <option value="e">e. Use the team approach</option>
+                        </select>
+                    </div>
+                    <p>Don't assume teens already know how to do something. Kelly says, 'We left my teenage daughter alone for a couple of days, but she had no idea how to sort the rubbish and the recycling. What a mess! If you <strong>demonstrate</strong> a chore, you will probably find it's been done well.'</p>
+
+                    <div class="heading-slot">
+                        <span>2.</span>
+                        <select class="vocab-select" data-correct="e">
+                            <option value="">-- select heading --</option>
+                            <option value="a">a. Chores can be a welcome distraction</option>
+                            <option value="b">b. Explain the job</option>
+                            <option value="c">c. One task at a time</option>
+                            <option value="d">d. Tips to get chores done</option>
+                            <option value="e">e. Use the team approach</option>
+                        </select>
+                    </div>
+                    <p>'We do so much for our kids,' says Kelly. 'If they aren't being driven everywhere, they're being helped with homework.' So, according to Kelly, when teens do something like sweeping the floor, they <strong>enjoy</strong> giving something back to the family. 'And always remember teens should be thanked and <strong>praised</strong>.'</p>
+
+                    <div class="heading-slot">
+                        <span>3.</span>
+                        <select class="vocab-select" data-correct="c">
+                            <option value="">-- select heading --</option>
+                            <option value="a">a. Chores can be a welcome distraction</option>
+                            <option value="b">b. Explain the job</option>
+                            <option value="c">c. One task at a time</option>
+                            <option value="d">d. Tips to get chores done</option>
+                            <option value="e">e. Use the team approach</option>
+                        </select>
+                    </div>
+                    <p>If you can't stand how towels are always being left on the floor, don't let your teens get away with it. Make them pick the towels up, but don't add on other chores at the same time. Tell them that if they keep throwing their towel on the floor, they won't be allowed to see their friends at the weekend, and that's it.</p>
+
+                    <div class="heading-slot">
+                        <span>4.</span>
+                        <select class="vocab-select" data-correct="a">
+                            <option value="">-- select heading --</option>
+                            <option value="a">a. Chores can be a welcome distraction</option>
+                            <option value="b">b. Explain the job</option>
+                            <option value="c">c. One task at a time</option>
+                            <option value="d">d. Tips to get chores done</option>
+                            <option value="e">e. Use the team approach</option>
+                        </select>
+                    </div>
+                    <p>Exam revision can send the best-natured adolescent into a panic, but teens should still continue with their regular chores. 'Actually, a chore can give a teen an anchor when things aren't going well at school or socially. Watering the plants has nothing to do with an A or a B grade, but it can provide a welcome <strong>escape</strong>.'</p>
+
+                    <div class="heading-slot">
+                        <span>5.</span>
+                        <select class="vocab-select" data-correct="d">
+                            <option value="">-- select heading --</option>
+                            <option value="a">a. Chores can be a welcome distraction</option>
+                            <option value="b">b. Explain the job</option>
+                            <option value="c">c. One task at a time</option>
+                            <option value="d">d. Tips to get chores done</option>
+                            <option value="e">e. Use the team approach</option>
+                        </select>
+                    </div>
+                    <p>• Let your teens have <strong>input</strong> into which tasks they feel they can manage.<br>
+                    • Keep chores <strong>gender-neutral</strong>. Don't leave all the kitchen chores for daughters, and jobs like washing the car or fixing things for sons.</p>
+
+                    <button class="check-btn" onclick="checkReadingEx2()">Check Headings</button>
+                    <div id="reading-feedback-2" class="feedback-msg"></div>
+                </div>
+            </details>
+
+            <details style="margin-top: 16px;">
+                <summary>📖 Reading Block 2: Have Your Say (Teenagers' Comments)</summary>
+                <div class="panel-body" style="line-height: 1.8;">
+                    <h3 style="color: var(--primary); margin-bottom: 10px;">Have Your Say</h3>
+                    <p style="margin-bottom: 12px;"><strong>Keira, 15, Newcastle:</strong> I totally agree about teens being thanked and praised. It's really annoying when you do stuff and no one ever says thank you. Mind you, it's got a bit better recently for me because my parents have started to pay me £2 a week for loading and unloading the dishwasher every day. Is it worth it? Yes! I used to do it for free!</p>
+                    <p style="margin-bottom: 12px;"><strong>Viktor, 15, Novgorod:</strong> The idea that parents need to <strong>demonstrate</strong> chores isn't as insulting as it sounds. I remember the time my parents asked me to give them a hand when they went out for the day. 'Easy!' I thought, but I couldn't even do the first thing on the list - wash the towels - because I couldn't get the washing machine to start. They'd offered to pay me, so I ended up washing the towels by hand because I didn't want to lose the money! It was really frustrating. I wished I'd had some training!</p>
+                    <p style="margin-bottom: 12px;"><strong>Ana, 15, Málaga:</strong> Why do we need to keep chores gender-neutral? I'd rather clean the kitchen than the car any day!</p>
+                    <p><strong>Giancarlo, 15, Pisa:</strong> I'm not sure I agree with the distraction idea. Sometimes you're really busy, with homework to hand in and revision to do, and then the last thing you need is extra chores. Don't parents realise that life is already busy and stressful enough for modern teenagers!?</p>
+                </div>
+            </details>
+
+            <details style="margin-top: 16px;">
+                <summary>Exercise 3: Read what teenagers say. Who...</summary>
+                <div class="panel-body">
+                    <ol class="vocab-exercise-list" id="reading-ex3">
+                        <li>
+                            would prefer to do 'women's' tasks?
+                            <select class="vocab-select" data-correct="Ana">
+                                <option value="">-- select --</option>
+                                <option value="Keira">Keira</option>
+                                <option value="Viktor">Viktor</option>
+                                <option value="Ana">Ana</option>
+                                <option value="Giancarlo">Giancarlo</option>
+                            </select>
+                        </li>
+                        <li>
+                            likes being shown how to do tasks?
+                            <select class="vocab-select" data-correct="Viktor">
+                                <option value="">-- select --</option>
+                                <option value="Keira">Keira</option>
+                                <option value="Viktor">Viktor</option>
+                                <option value="Ana">Ana</option>
+                                <option value="Giancarlo">Giancarlo</option>
+                            </select>
+                        </li>
+                        <li>
+                            wants to feel appreciated for doing household tasks?
+                            <select class="vocab-select" data-correct="Keira">
+                                <option value="">-- select --</option>
+                                <option value="Keira">Keira</option>
+                                <option value="Viktor">Viktor</option>
+                                <option value="Ana">Ana</option>
+                                <option value="Giancarlo">Giancarlo</option>
+                            </select>
+                        </li>
+                        <li>
+                            feels that teens already have too many tasks to do?
+                            <select class="vocab-select" data-correct="Giancarlo">
+                                <option value="">-- select --</option>
+                                <option value="Keira">Keira</option>
+                                <option value="Viktor">Viktor</option>
+                                <option value="Ana">Ana</option>
+                                <option value="Giancarlo">Giancarlo</option>
+                            </select>
+                        </li>
+                        <li>
+                            found their own way to complete a task?
+                            <select class="vocab-select" data-correct="Viktor">
+                                <option value="">-- select --</option>
+                                <option value="Keira">Keira</option>
+                                <option value="Viktor">Viktor</option>
+                                <option value="Ana">Ana</option>
+                                <option value="Giancarlo">Giancarlo</option>
+                            </select>
+                        </li>
+                    </ol>
+                    <button class="check-btn" onclick="checkReadingEx3()">Check Comments</button>
+                    <div id="reading-feedback-3" class="feedback-msg"></div>
+                </div>
+            </details>
+
+            <details style="margin-top: 16px;">
+                <summary>Exercise 4: Match the highlighted words in the article to the meanings</summary>
+                <div class="panel-body">
+                    <ol class="vocab-exercise-list" id="reading-ex4">
+                        <li>
+                            deal with something: 
+                            <input type="text" class="vocab-input" data-correct="handled" placeholder="type word...">
+                        </li>
+                        <li>
+                            make a very strong and urgent request: 
+                            <input type="text" class="vocab-input" data-correct="begged" placeholder="type word...">
+                        </li>
+                        <li>
+                            not associated with being male or female: 
+                            <input type="text" class="vocab-input" data-correct="gender-neutral" placeholder="type word...">
+                        </li>
+                        <li>
+                            show something and explain how it works: 
+                            <input type="text" class="vocab-input" data-correct="demonstrate" placeholder="type word...">
+                        </li>
+                        <li>
+                            ideas, money and effort that are put into a process to help it succeed: 
+                            <input type="text" class="vocab-input" data-correct="input" placeholder="type word...">
+                        </li>
+                        <li>
+                            express admiration for someone or something: 
+                            <input type="text" class="vocab-input" data-correct="praised" placeholder="type word...">
+                        </li>
+                    </ol>
+                    <button class="check-btn" onclick="checkReadingEx4()">Check Meanings</button>
+                    <div id="reading-feedback-4" class="feedback-msg"></div>
+                </div>
+            </details>
+        </div>
+
+        <!-- Етап 5: Grammar Practice -->
+        <div id="grammar" class="tab-content">
+            <div class="stage-title">Grammar Practice: Household Chores & Tenses</div>
+            <p style="margin-bottom: 16px; color: var(--text-muted);">Practice using <strong>Present Simple</strong>, <strong>Present Continuous</strong>, <strong>Past Simple</strong>, and <strong>Present Perfect</strong> with the lesson vocabulary.</p>
+
+            <!-- Вправа 1 -->
+            <details open>
+                <summary>Exercise 1: Choose the correct verb form (6 sentences)</summary>
+                <div class="panel-body">
+                    <ol class="vocab-exercise-list" id="grammar-ex1">
+                        <li>
+                            My brother usually 
+                            <select class="vocab-select" data-correct="loads">
+                                <option value="">-- choose --</option>
+                                <option value="loads">loads</option>
+                                <option value="is loading">is loading</option>
+                                <option value="has loaded">has loaded</option>
+                            </select> 
+                            the dishwasher after dinner.
+                        </li>
+                        <li>
+                            Look! Dad 
+                            <select class="vocab-select" data-correct="is fixing">
+                                <option value="">-- choose --</option>
+                                <option value="fixes">fixes</option>
+                                <option value="is fixing">is fixing</option>
+                                <option value="fixed">fixed</option>
+                            </select> 
+                            my sister's bike in the garage right now.
+                        </li>
+                        <li>
+                            Yesterday, I 
+                            <select class="vocab-select" data-correct="swept">
+                                <option value="">-- choose --</option>
+                                <option value="sweep">sweep</option>
+                                <option value="have swept">have swept</option>
+                                <option value="swept">swept</option>
+                            </select> 
+                            all the dry leaves off the garden path.
+                        </li>
+                        <li>
+                            We can watch a film now because we 
+                            <select class="vocab-select" data-correct="have already cleared up">
+                                <option value="">-- choose --</option>
+                                <option value="already clear up">already clear up</option>
+                                <option value="are already clearing up">are already clearing up</option>
+                                <option value="have already cleared up">have already cleared up</option>
+                            </select> 
+                            the mess in the living room.
+                        </li>
+                        <li>
+                            My sister 
+                            <select class="vocab-select" data-correct="hasn't watered">
+                                <option value="">-- choose --</option>
+                                <option value="doesn't water">doesn't water</option>
+                                <option value="hasn't watered">hasn't watered</option>
+                                <option value="isn't watering">isn't watering</option>
+                            </select> 
+                            the plants for two weeks, so they look very dry.
+                        </li>
+                        <li>
+                            At the moment, the children 
+                            <select class="vocab-select" data-correct="are sorting">
+                                <option value="">-- choose --</option>
+                                <option value="sort">sort</option>
+                                <option value="sorted">sorted</option>
+                                <option value="are sorting">are sorting</option>
+                            </select> 
+                            the plastic and paper for recycling.
+                        </li>
+                    </ol>
+                    <button class="check-btn" onclick="checkGrammarEx1()">Check Exercise 1</button>
+                    <div id="grammar-feedback-1" class="feedback-msg"></div>
+                </div>
+            </details>
+
+            <!-- Вправа 2 -->
+            <details style="margin-top: 16px;">
+                <summary>Exercise 2: Complete the sentences with the correct form of the verbs in brackets (6 sentences)</summary>
+                <div class="panel-body">
+                    <ol class="vocab-exercise-list" id="grammar-ex2">
+                        <li>
+                            I <input type="text" class="vocab-input" data-correct="have just folded|just folded" placeholder="type verb..."> (just / fold) all the clean clothes, so please put them away.
+                        </li>
+                        <li>
+                            Every evening, my parents <input type="text" class="vocab-input" data-correct="wipe" placeholder="type verb..."> (wipe) the kitchen surfaces before going to bed.
+                        </li>
+                        <li>
+                            Last Sunday, my dad <input type="text" class="vocab-input" data-correct="demonstrated" placeholder="type verb..."> (demonstrate) how to use the new washing machine.
+                        </li>
+                        <li>
+                            Be quiet! Mum <input type="text" class="vocab-input" data-correct="is putting away" placeholder="type verb..."> (put away) the dishes in the cupboard now.
+                        </li>
+                        <li>
+                            <input type="text" class="vocab-input" data-correct="Have you washed up" placeholder="type verb..."> (you / wash up) the plates yet?
+                        </li>
+                        <li>
+                            Our teacher <input type="text" class="vocab-input" data-correct="praised" placeholder="type verb..."> (praise) us yesterday for keeping the classroom tidy.
+                        </li>
+                    </ol>
+                    <button class="check-btn" onclick="checkGrammarEx2()">Check Exercise 2</button>
+                    <div id="grammar-feedback-2" class="feedback-msg"></div>
+                </div>
+            </details>
+
+            <!-- Вправа 3 -->
+            <details style="margin-top: 16px;">
+                <summary>Exercise 3: Translate the sentences into English (6 sentences)</summary>
+                <div class="panel-body">
+                    <p style="margin-bottom: 14px; color: var(--text-muted); font-size: 0.92rem;">
+                        Type your translation in English using <strong>Present Simple, Present Continuous, Past Simple,</strong> or <strong>Present Perfect</strong>.
+                    </p>
+                    <ol class="vocab-exercise-list" id="grammar-ex3">
+                        <li>
+                            Я зазвичай завантажую посудомийну машину ввечері.
+                            <input type="text" class="vocab-input translation-input" data-correct="i usually load the dishwasher in the evening|usually i load the dishwasher in the evening" placeholder="Type English translation...">
+                            <div class="hint-text">Model answer: I usually load the dishwasher in the evening.</div>
+                        </li>
+                        <li>
+                            Зараз мій тато підмітає підлогу на кухні.
+                            <input type="text" class="vocab-input translation-input" data-correct="my dad is sweeping the floor in the kitchen now|my dad is sweeping the kitchen floor now|dad is sweeping the floor in the kitchen right now|my father is sweeping the floor in the kitchen now|right now my dad is sweeping the floor in the kitchen|now my dad is sweeping the floor in the kitchen" placeholder="Type English translation...">
+                            <div class="hint-text">Model answer: My dad is sweeping the floor in the kitchen now.</div>
+                        </li>
+                        <li>
+                            Вчора ми посортували сміття та витерли стіл.
+                            <input type="text" class="vocab-input translation-input" data-correct="yesterday we sorted the rubbish and wiped the table|we sorted the rubbish and wiped the table yesterday|yesterday we sorted the trash and wiped the table" placeholder="Type English translation...">
+                            <div class="hint-text">Model answer: Yesterday we sorted the rubbish and wiped the table.</div>
+                        </li>
+                        <li>
+                            Ти вже полив квіти сьогодні?
+                            <input type="text" class="vocab-input translation-input" data-correct="have you watered the flowers today|have you watered the plants today" placeholder="Type English translation...">
+                            <div class="hint-text">Model answer: Have you watered the flowers today?</div>
+                        </li>
+                        <li>
+                            Вона ще не поскладала свій одяг.
+                            <input type="text" class="vocab-input translation-input" data-correct="she has not folded her clothes yet|she hasnt folded her clothes yet|she has not put away her clothes yet|she hasnt put away her clothes yet" placeholder="Type English translation...">
+                            <div class="hint-text">Model answer: She hasn't folded her clothes yet.</div>
+                        </li>
+                        <li>
+                            Мій брат часто лагодить наш велосипед у гаражі.
+                            <input type="text" class="vocab-input translation-input" data-correct="my brother often fixes our bike in the garage|my brother often mends our bike in the garage|my brother often fixes our bicycle in the garage" placeholder="Type English translation...">
+                            <div class="hint-text">Model answer: My brother often fixes our bike in the garage.</div>
+                        </li>
+                    </ol>
+                    <button class="check-btn" onclick="checkGrammarEx3()">Check Translations</button>
+                    <div id="grammar-feedback-3" class="feedback-msg"></div>
+                </div>
+            </details>
+        </div>
+
+        <!-- Етап 6: Homework + Speaking Points для наступного уроку -->
+        <div id="homework" class="tab-content">
+            
+            
+            
+
+            <div class="speaking-box">
+                <h3>🗣️ Speaking Points</h3>
+                <p style="margin-bottom: 14px; color: var(--text-muted); font-size: 0.95rem;">
+                    Prepare your ideas on the following questions. We will use them as a warmer for our next topic: <strong>"How parents influence children's decision-making"</strong>.
+                </p>
+                <ol style="color: var(--text-main); line-height: 1.8;">
+                    <li><strong>Choice of chores:</strong> Do your parents allow you to choose which household chores you do, or do they assign every task themselves? How does this affect your motivation?</li>
+                    <li><strong>Learning independence:</strong> How can doing regular chores (like sorting rubbish, washing up, or managing your room) help teenagers make better decisions in adult life?</li>
+                    <li><strong>Parents' methods:</strong> In the article we read, Kate Kelly says parents should <em>"let teens have input into which tasks they feel they can manage."</em> Do you agree that giving teens a voice in small daily decisions prepares them for bigger life choices?</li>
+                    <li><strong>Rewards vs. responsibility:</strong> Should parents pay teenagers or set strict rules (like no weekend outings) to influence their behavior, or is it better to let teens decide how to manage their own time?</li>
+                    <li><strong>Beyond housework:</strong> Apart from household chores, in what other areas (e.g., studies, hobbies, clothing, friends) do your parents strongly influence your decisions?</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(button => button.classList.remove('active'));
+
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+            evt.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }
+
+        const allVerbs1 = ["fold", "sweep", "sort", "clear up", "wipe", "put away", "water", "load", "fix/mend"];
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const selects1 = document.querySelectorAll('#vocab-exercise-container-1 .vocab-select');
+            selects1.forEach(select => {
+                let shuffled = [...allVerbs1].sort(() => Math.random() - 0.5);
+                shuffled.forEach(verb => {
+                    const opt = document.createElement('option');
+                    opt.value = verb;
+                    opt.textContent = verb;
+                    select.appendChild(opt);
+                });
+            });
+
+            const selects2 = document.querySelectorAll('#vocab-exercise-container-2 .vocab-select');
+            selects2.forEach(select => {
+                let options = Array.from(select.options).slice(1);
+                options.sort(() => Math.random() - 0.5);
+                options.forEach(opt => select.appendChild(opt));
+            });
+        });
+
+        function checkVocabulary1() {
+            const selects = document.querySelectorAll('#vocab-exercise-container-1 .vocab-select');
+            let allCorrect = true;
+
+            selects.forEach(select => {
+                const correctVal = select.getAttribute('data-correct');
+                if (select.value.trim().toLowerCase() === correctVal) {
+                    select.style.borderColor = "var(--success-border)";
+                    select.style.backgroundColor = "var(--success-bg)";
+                } else {
+                    select.style.borderColor = "var(--error-border)";
+                    select.style.backgroundColor = "var(--error-bg)";
+                    allCorrect = false;
+                }
+            });
+
+            const feedback = document.getElementById('vocab-feedback-1');
+            feedback.style.display = 'block';
+            if (allCorrect) {
+                feedback.textContent = "All answers in Exercise 1 are correct! Fantastic job.";
+                feedback.style.color = "var(--success-text)";
+            } else {
+                feedback.textContent = "Some answers are incorrect. Check highlighted dropdowns and try again.";
+                feedback.style.color = "var(--error-text)";
+            }
+        }
+
+        function checkVocabulary2() {
+            const selects = document.querySelectorAll('#vocab-exercise-container-2 .vocab-select');
+            let allCorrect = true;
+
+            selects.forEach(select => {
+                const correctVal = select.getAttribute('data-correct');
+                if (select.value.trim().toLowerCase() === correctVal) {
+                    select.style.borderColor = "var(--success-border)";
+                    select.style.backgroundColor = "var(--success-bg)";
+                } else {
+                    select.style.borderColor = "var(--error-border)";
+                    select.style.backgroundColor = "var(--error-bg)";
+                    allCorrect = false;
+                }
+            });
+
+            const feedback = document.getElementById('vocab-feedback-2');
+            feedback.style.display = 'block';
+            if (allCorrect) {
+                feedback.textContent = "All answers in Exercise 2 are correct! Excellent job.";
+                feedback.style.color = "var(--success-text)";
+            } else {
+                feedback.textContent = "Some answers are incorrect. Check highlighted dropdowns and try again.";
+                feedback.style.color = "var(--error-text)";
+            }
+        }
+
+        function checkVocabulary3() {
+            const inputs = document.querySelectorAll('#vocab-exercise-container-3 .vocab-input');
+            let allCorrect = true;
+
+            inputs.forEach(input => {
+                const correctVal = input.getAttribute('data-correct').toLowerCase();
+                const userVal = input.value.trim().toLowerCase();
+                if (userVal === correctVal) {
+                    input.style.borderColor = "var(--success-border)";
+                    input.style.backgroundColor = "var(--success-bg)";
+                } else {
+                    input.style.borderColor = "var(--error-border)";
+                    input.style.backgroundColor = "var(--error-bg)";
+                    allCorrect = false;
+                }
+            });
+
+            const feedback = document.getElementById('vocab-feedback-3');
+            feedback.style.display = 'block';
+            if (allCorrect) {
+                feedback.textContent = "All answers in Exercise 3 are correct! Great job.";
+                feedback.style.color = "var(--success-text)";
+            } else {
+                feedback.textContent = "Some answers are incorrect. Check highlighted inputs and try again.";
+                feedback.style.color = "var(--error-text)";
+            }
+        }
+
+        function checkReadingEx2() {
+            const selects = document.querySelectorAll('#reading-ex2 .vocab-select');
+            let allCorrect = true;
+            selects.forEach(select => {
+                if (select.value === select.getAttribute('data-correct')) {
+                    select.style.borderColor = "var(--success-border)";
+                    select.style.backgroundColor = "var(--success-bg)";
+                } else {
+                    select.style.borderColor = "var(--error-border)";
+                    select.style.backgroundColor = "var(--error-bg)";
+                    allCorrect = false;
+                }
+            });
+            const feedback = document.getElementById('reading-feedback-2');
+            feedback.style.display = 'block';
+            if (allCorrect) {
+                feedback.textContent = "All paragraph headings are correct! Great job.";
+                feedback.style.color = "var(--success-text)";
+            } else {
+                feedback.textContent = "Some headings are incorrect. Try again.";
+                feedback.style.color = "var(--error-text)";
+            }
+        }
+
+        function checkReadingEx3() {
+            const selects = document.querySelectorAll('#reading-ex3 .vocab-select');
+            let allCorrect = true;
+            selects.forEach(select => {
+                if (select.value === select.getAttribute('data-correct')) {
+                    select.style.borderColor = "var(--success-border)";
+                    select.style.backgroundColor = "var(--success-bg)";
+                } else {
+                    select.style.borderColor = "var(--error-border)";
+                    select.style.backgroundColor = "var(--error-bg)";
+                    allCorrect = false;
+                }
+            });
+            const feedback = document.getElementById('reading-feedback-3');
+            feedback.style.display = 'block';
+            if (allCorrect) {
+                feedback.textContent = "All answers are correct! Excellent.";
+                feedback.style.color = "var(--success-text)";
+            } else {
+                feedback.textContent = "Some answers are incorrect. Try again.";
+                feedback.style.color = "var(--error-text)";
+            }
+        }
+
+        function checkReadingEx4() {
+            const inputs = document.querySelectorAll('#reading-ex4 .vocab-input');
+            let allCorrect = true;
+            inputs.forEach(input => {
+                if (input.value.trim().toLowerCase() === input.getAttribute('data-correct').toLowerCase()) {
+                    input.style.borderColor = "var(--success-border)";
+                    input.style.backgroundColor = "var(--success-bg)";
+                } else {
+                    input.style.borderColor = "var(--error-border)";
+                    input.style.backgroundColor = "var(--error-bg)";
+                    allCorrect = false;
+                }
+            });
+            const feedback = document.getElementById('reading-feedback-4');
+            feedback.style.display = 'block';
+            if (allCorrect) {
+                feedback.textContent = "All words matched correctly! Fantastic job.";
+                feedback.style.color = "var(--success-text)";
+            } else {
+                feedback.textContent = "Some words are incorrect. Try again.";
+                feedback.style.color = "var(--error-text)";
+            }
+        }
+
+        function checkGrammarEx1() {
+            const selects = document.querySelectorAll('#grammar-ex1 .vocab-select');
+            let allCorrect = true;
+
+            selects.forEach(select => {
+                if (select.value.trim() === select.getAttribute('data-correct')) {
+                    select.style.borderColor = "var(--success-border)";
+                    select.style.backgroundColor = "var(--success-bg)";
+                } else {
+                    select.style.borderColor = "var(--error-border)";
+                    select.style.backgroundColor = "var(--error-bg)";
+                    allCorrect = false;
+                }
+            });
+
+            const feedback = document.getElementById('grammar-feedback-1');
+            feedback.style.display = 'block';
+            if (allCorrect) {
+                feedback.textContent = "All answers in Exercise 1 are correct! Fantastic.";
+                feedback.style.color = "var(--success-text)";
+            } else {
+                feedback.textContent = "Some answers are incorrect. Check tenses and try again.";
+                feedback.style.color = "var(--error-text)";
+            }
+        }
+
+        function checkGrammarEx2() {
+            const inputs = document.querySelectorAll('#grammar-ex2 .vocab-input');
+            let allCorrect = true;
+
+            inputs.forEach(input => {
+                const accepted = input.getAttribute('data-correct').split('|').map(s => s.trim().toLowerCase());
+                const userVal = input.value.trim().toLowerCase().replace(/\s+/g, ' ');
+                if (accepted.includes(userVal)) {
+                    input.style.borderColor = "var(--success-border)";
+                    input.style.backgroundColor = "var(--success-bg)";
+                } else {
+                    input.style.borderColor = "var(--error-border)";
+                    input.style.backgroundColor = "var(--error-bg)";
+                    allCorrect = false;
+                }
+            });
+
+            const feedback = document.getElementById('grammar-feedback-2');
+            feedback.style.display = 'block';
+            if (allCorrect) {
+                feedback.textContent = "All verb forms in Exercise 2 are correct! Well done.";
+                feedback.style.color = "var(--success-text)";
+            } else {
+                feedback.textContent = "Some verb forms are incorrect. Check the time markers and try again.";
+                feedback.style.color = "var(--error-text)";
+            }
+        }
+
+        function normalizeSentence(str) {
+            return str
+                .toLowerCase()
+                .replace(/['’]/g, '')
+                .replace(/[.,!?]/g, '')
+                .replace(/\s+/g, ' ')
+                .trim();
+        }
+
+        function checkGrammarEx3() {
+            const items = document.querySelectorAll('#grammar-ex3 li');
+            let allCorrect = true;
+
+            items.forEach(item => {
+                const input = item.querySelector('.translation-input');
+                const hint = item.querySelector('.hint-text');
+                const accepted = input.getAttribute('data-correct').split('|').map(normalizeSentence);
+                const userVal = normalizeSentence(input.value);
+
+                if (accepted.includes(userVal)) {
+                    input.style.borderColor = "var(--success-border)";
+                    input.style.backgroundColor = "var(--success-bg)";
+                    hint.style.display = "none";
+                } else {
+                    input.style.borderColor = "var(--error-border)";
+                    input.style.backgroundColor = "var(--error-bg)";
+                    hint.style.display = "block";
+                    allCorrect = false;
+                }
+            });
+
+            const feedback = document.getElementById('grammar-feedback-3');
+            feedback.style.display = 'block';
+            if (allCorrect) {
+                feedback.textContent = "All translations in Exercise 3 are correct! Excellent work.";
+                feedback.style.color = "var(--success-text)";
+            } else {
+                feedback.textContent = "Some translations need correction. Compare with the model answers below the highlighted fields.";
+                feedback.style.color = "var(--error-text)";
+            }
+        }
+    </script>
+</body>
+</html>
